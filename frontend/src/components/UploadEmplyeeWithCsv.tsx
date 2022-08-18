@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import {
     UploadOutlined,
   } from "@ant-design/icons";
-
+import UploadFileCSV from './UploadFileCSV';
+  
 const UploadEmplyeeWithCsv: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -25,7 +26,7 @@ const UploadEmplyeeWithCsv: React.FC = () => {
         Upload Emplyee 
       </Button>
       <Modal title="Upload Emplyee" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        Upload file view
+        <UploadFileCSV />
       </Modal>
     </div>
   );
