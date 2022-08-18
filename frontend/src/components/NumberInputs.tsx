@@ -3,16 +3,19 @@ import {
   DollarOutlined,
   FileSearchOutlined,
 } from "@ant-design/icons";
+import { numberValidationForInputs } from "../utils";
 
 const { Text } = Typography;
 
 type Props = {
   prefix: boolean;
   label: string;
+  value?: string | number | undefined;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>
 };
 
 
-const NumberInputs: React.FC<Props> = ({ prefix, label }) => (
+const NumberInputs: React.FC<Props> = ({ prefix, label, value, onChange }) => (
   <Space className="input-container">
     {prefix && (
       <div className="input-prefix-icon">
@@ -30,6 +33,9 @@ const NumberInputs: React.FC<Props> = ({ prefix, label }) => (
       placeholder="Amount Ex. 1000"
       prefix={<DollarOutlined />}
       bordered={false}
+      value={value}
+      status={numberValidationForInputs(value)}
+      onChange={onChange}
     />
   </Space>
 );
