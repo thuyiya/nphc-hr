@@ -1,5 +1,6 @@
 const ROUTES = {
     EMPLOYEES: '/employees',
+    EMPLOYEES_BY_ID: '/employees/:id',
     USERS_UPLOAD: '/users/upload'
 }
 

@@ -41,7 +41,7 @@ const EmployeeTabel: React.FC<Props> = ({ data = [] }) => {
       render: (_: any, record: any) => (
         <Space size="middle">
           <EditEmployeeModal record={record}/>
-          <Button type="text" danger size="small" onClick={showDeleteConfirm}>
+          <Button type="text" danger size="small" onClick={() => showDeleteConfirm(record)}>
             <DeleteOutlined />
           </Button>
         </Space>
@@ -49,7 +49,11 @@ const EmployeeTabel: React.FC<Props> = ({ data = [] }) => {
     },
   ];
 
-  const showDeleteConfirm = () => {
+  const removeEmployee = (employee: EmployeeType) => {
+    console.log(employee)
+  }
+
+  const showDeleteConfirm = (employee: EmployeeType) => {
     confirm({
       title: 'Are you sure delete this employee?',
       icon: <ExclamationCircleOutlined />,
@@ -58,7 +62,7 @@ const EmployeeTabel: React.FC<Props> = ({ data = [] }) => {
       okType: 'danger',
       cancelText: 'No',
       onOk() {
-        console.log('OK');
+        removeEmployee(employee)
       },
       onCancel() {
         console.log('Cancel');
