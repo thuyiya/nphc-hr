@@ -87,8 +87,8 @@ const UploadFileCSV: React.FC<Props> = ({ isModalVisible }) => {
         throw _results;
       }
     } catch (error) {
-      console.log("error ", error);
       onError("Error");
+      message.error('Upload Error!', 10);
       setLoading(false);
     }
   };

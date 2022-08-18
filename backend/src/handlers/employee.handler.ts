@@ -13,7 +13,7 @@ const EmployeeController = async (req: Request, res: Response) => {
 
 const UploadEmployeer = async (req: Request, res: Response) => {
   try {
-    return res.status(200).json(SUCCESS_RESPONCE.success({ success: true,message: "Successfully uploaded files", file: req.files }));
+    return res.status(400).json(SUCCESS_RESPONCE.success(req.files));
   } catch (e) {
     return res.status(400).json(ERROR_RESPONCE.notFound((e as Error).message));
   }
