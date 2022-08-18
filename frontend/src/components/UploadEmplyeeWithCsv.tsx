@@ -20,14 +20,14 @@ const UploadEmplyeeWithCsv: React.FC = () => {
   };
 
   return (
-    <>
+    <div style={{ margin: 8 }}>
       <Button type="primary" onClick={showModal} icon={<UploadOutlined />} >
         Upload Emplyee 
       </Button>
       <Modal title="Upload Emplyee" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
         Upload file view
       </Modal>
-    </>
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
 import { Typography, Row, Col } from "antd";
+import NumberInputs from "./NumberInputs";
 
 const { Title } = Typography;
 
@@ -6,7 +7,9 @@ const Employee: React.FC = () => {
   return (
     <div>
       <Row>
-        <Col>Filter Input 1</Col>
+        <Col>
+          <NumberInputs prefix={true} label={"Minimum Salary"} />
+        </Col>
         <Col>
           <div
             style={{
@@ -19,7 +22,9 @@ const Employee: React.FC = () => {
             -
           </div>
         </Col>
-        <Col>Filter Input 2</Col>
+        <Col>
+          <NumberInputs prefix={false} label={"Maximum Salary"} />
+        </Col>
       </Row>
       <Row>
         <Title level={4} style={{ marginTop: 16, marginBottom: 16 }}>
