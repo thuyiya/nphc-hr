@@ -7,6 +7,7 @@ import {
 import { message, Space, Upload, Button, Tooltip } from "antd";
 import type { UploadChangeParam } from "antd/es/upload";
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
+import EndpointService from "../services/endpoint";
 
 const MAX_LENGTH = 28;
 
@@ -22,8 +23,6 @@ const beforeUpload = (file: RcFile) => {
   if (!isCsv) {
     message.error("You can only upload csv file!");
   }
-
-  console.log("file.size ", file.size)
 
   const isLt2M = file.size / 1024 / 1024 < 2;
   if (!isLt2M) {
@@ -44,6 +43,9 @@ const UploadFileCSV: React.FC = () => {
       return;
     }
     if (info.file.status === "done") {
+
+      console.log("info.file.originFileObj ", info.file.originFileObj)
+      
       // Get this url from response in real world.
       getBase64(info.file.originFileObj as RcFile, () => {
         setLoading(false);
@@ -54,18 +56,38 @@ const UploadFileCSV: React.FC = () => {
 
   const uploadButton = (
     <Button>
-      {loading ? <LoadingOutlined /> : <UploadOutlined />} Click to Upload CSV Attachments
+      {loading ? <LoadingOutlined /> : <UploadOutlined />} Click to Upload CSV
+      Attachments
     </Button>
   );
 
-  const dummyRequest = async (options: any) => {
-    const { onSuccess, onError } = options;
+  const uploadRequest = async (options: any) => {
+    const { onSuccess, onError, file } = options;
+
     try {
-      setTimeout(() => {
+      const endpoint = new EndpointService();
+
+      const files: any = [file]
+
+      const data = new FormData();
+      data.append("files", files);
+
+      const response = await fetch(endpoint.uploadFiles, {
+        method: "POST",
+        body: data,
+      });
+
+      const _results = await response.json();
+
+      if (_results.success) {
         onSuccess("ok");
-      }, 3000);
+      } else {
+        throw _results;
+      }
     } catch (error) {
+      console.log("error ", error);
       onError("Error");
+      setLoading(false);
     }
   };
 
@@ -74,8 +96,10 @@ const UploadFileCSV: React.FC = () => {
   };
 
   const removeCsvFromList = (file: UploadFile) => {
-    setFileList((prevState) => prevState.filter(data => data.uid !== file.uid));
-  }
+    setFileList((prevState) =>
+      prevState.filter((data) => data.uid !== file.uid)
+    );
+  };
 
   return (
     <Space direction="vertical">
@@ -84,7 +108,7 @@ const UploadFileCSV: React.FC = () => {
         className="avatar-uploader"
         showUploadList={false}
         multiple={true}
-        customRequest={dummyRequest}
+        customRequest={uploadRequest}
         beforeUpload={beforeUpload}
         onChange={handleChange}
       >
@@ -95,7 +119,12 @@ const UploadFileCSV: React.FC = () => {
           <Tooltip title={file.name}>
             <span className="file-name">{createShortName(file.name)}</span>
           </Tooltip>
-          <Button type="text" danger size="small" onClick={() => removeCsvFromList(file)}>
+          <Button
+            type="text"
+            danger
+            size="small"
+            onClick={() => removeCsvFromList(file)}
+          >
             <DeleteOutlined />
           </Button>
         </Space>

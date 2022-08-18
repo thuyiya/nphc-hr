@@ -13,6 +13,10 @@ class EndpointService {
   get getEmployees() {
     return `${EndpointService.BASE_URL}/${ENDPOINTS.employees}`;
   }
+
+  get uploadFiles() {
+    return `${EndpointService.BASE_URL}/${ENDPOINTS.usersUpload}`;
+  }
 }
 
 export default EndpointService;

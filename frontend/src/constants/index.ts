@@ -26,6 +26,7 @@ const STRINGS = {
 
 const ENDPOINTS = {
   employees: `employees`,
+  usersUpload: `users/upload`,
 };
 
 export { ENDPOINTS, STRINGS };
