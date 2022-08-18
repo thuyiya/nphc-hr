@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Typography, Row, Col } from "antd";
 import EmployeeTabel from "./EmployeeTabel";
 import NumberInputs from "./NumberInputs";
@@ -36,8 +36,10 @@ const Employee: React.FC = () => {
 
   const filterData = (record: EmployeeType []): EmployeeType[] => {
     if (
-      maximumSalary !== undefined &&
+      maximumSalary !== undefined && 
+      maximumSalary !== "" &&
       minimumSalary !== undefined &&
+      minimumSalary !== "" &&
       (Number(maximumSalary) > 0 || Number(minimumSalary) > 0)
     ) {
       return record.filter(
@@ -45,12 +47,12 @@ const Employee: React.FC = () => {
           emp.salary >= Number(minimumSalary) &&
           emp.salary <= Number(maximumSalary)
       );
-    } else if (maximumSalary !== undefined && Number(minimumSalary) > 0) {
+    } else if (minimumSalary !== undefined && Number(minimumSalary) > 0) {
       return record.filter(
         (emp: EmployeeType) => emp.salary >= Number(minimumSalary)
       );
     }
-    if (minimumSalary !== undefined && Number(maximumSalary) > 0) {
+    if (maximumSalary !== undefined && Number(maximumSalary) > 0) {
       return record.filter(
         (emp: EmployeeType) => emp.salary <= Number(maximumSalary)
       );
