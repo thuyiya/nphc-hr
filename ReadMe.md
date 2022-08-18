@@ -32,7 +32,7 @@ Employee Dashboard Feature
 - Able to filter employees based on salary range
 - Able to order the list by id, employee name, login or salary ascending or
 descending.
-### USER STORY 3
+#### USER STORY 3
 CRUD Feature on employees
 - Create new employees
 - Update exiting emplyoee
@@ -48,6 +48,13 @@ CRUD Feature on employees
 
 
 ### Frontend
+- Screenshot 01
+
+![alt text](https://raw.githubusercontent.com/thuyiya/nphc-hr/main/sample/Screenshot%201.png?raw=true)
+
+- Screenshot 02
+
+![alt text](https://raw.githubusercontent.com/thuyiya/nphc-hr/main/sample/Screenshot%202.png?raw=true)
 
 #### Third party libraries
 
