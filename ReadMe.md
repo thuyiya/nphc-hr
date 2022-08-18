@@ -59,4 +59,42 @@ npm run test
 ```
 for see all the tests
 
+### Backend
+
+#### Third party libraries
+
+- Nodejs (14)
+- ExpressJS (4.18.1)
+- Typescript (4.7.3)
+- Mocha, Chai and Supertest
+
+Frist of all you have to install packages 
+```
+npm install 
+```
+
+And then run the application in dev mode:
+```
+npm run start 
+```
+Server will start on url: `http://localhost:8000`
+to run in production, build folder is located in backend root directory `dist`
+```
+npm run build
+npm run start
+```
+
+Use the  
+```
+npm run test
+```
+for see all the tests
+
+
+#### Developer Tools And Env
+
+- VSCode (Version: 1.67.1)
+- Node (v14.17.3)
+- Npm (6.14.13)
+
 ##### Documented By _Thusitha Jayalath_

@@ -1,0 +1,16 @@
+# Dependency directory
+node_modules
+
+# Editors
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+
+# Ignore built ts files
+dist/**/*
+
+# ignore yarn.lock package-lock
+yarn.lock
+package-lock.json
