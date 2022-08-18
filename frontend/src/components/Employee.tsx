@@ -68,33 +68,32 @@ const Employee: React.FC = () => {
     }
   };
 
-  const filterData = (): EmployeeType[] => {
-    console.log("func called");
+  const filterData = (record: EmployeeType []): EmployeeType[] => {
     if (
       maximumSalary !== undefined &&
       minimumSalary !== undefined &&
       (Number(maximumSalary) > 0 || Number(minimumSalary) > 0)
     ) {
-      return data.filter(
+      return record.filter(
         (emp: EmployeeType) =>
           emp.salary >= Number(minimumSalary) &&
           emp.salary <= Number(maximumSalary)
       );
     } else if (maximumSalary !== undefined && Number(minimumSalary) > 0) {
-      return data.filter(
+      return record.filter(
         (emp: EmployeeType) => emp.salary >= Number(minimumSalary)
       );
     }
     if (minimumSalary !== undefined && Number(maximumSalary) > 0) {
-      return data.filter(
+      return record.filter(
         (emp: EmployeeType) => emp.salary <= Number(maximumSalary)
       );
     } else {
-      return data;
+      return record;
     }
   };
 
-  const getFilterdData = useMemo(() => filterData(), [data]);
+  // const getFilterdData = useMemo(() => filterData(data), []);
 
   useEffect(() => {
     getEmplyees();
@@ -140,7 +139,7 @@ const Employee: React.FC = () => {
           Employees
         </Title>
         <Col span={24}>
-          <EmployeeTabel data={filterData()} />
+          <EmployeeTabel data={filterData(data)} />
         </Col>
       </Row>
     </div>

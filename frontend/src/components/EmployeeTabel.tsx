@@ -3,6 +3,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { ColumnsType } from 'antd/es/table';
 import { EmployeeType } from "../types"
 import { STRINGS } from "../constants";
+import EditEmployeeModal from "./EditEmployeeModal";
 
 const columns: ColumnsType<EmployeeType> = [
   {
@@ -31,9 +32,7 @@ const columns: ColumnsType<EmployeeType> = [
     key: "action",
     render: (_: any, record: any) => (
       <Space size="middle">
-        <Button type="text" size="small">
-          Edit
-        </Button>
+        <EditEmployeeModal record={record}/>
         <Button type="text" danger size="small">
           <DeleteOutlined />
         </Button>
