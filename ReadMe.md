@@ -75,7 +75,7 @@ npm install
 
 And then run the application in dev mode:
 ```
-npm run start 
+npm run dev 
 ```
 Server will start on url: `http://localhost:8000`
 to run in production, build folder is located in backend root directory `dist`
