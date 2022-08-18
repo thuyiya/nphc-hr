@@ -1,5 +1,6 @@
 import { Layout } from "antd";
 import React from "react";
+import SideBar from "./SideBar";
 
 const { Content } = Layout;
 
@@ -9,6 +10,7 @@ type Props = {
 
 const DashboardLayout: React.FC<Props> = ({ children }) => (
   <Layout>
+    <SideBar />
     <Layout>
       {/* <Header
         className="site-layout-sub-header-background"

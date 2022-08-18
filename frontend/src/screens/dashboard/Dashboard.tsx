@@ -1,13 +1,12 @@
+import DashboardLayout from '../../components/DashboardLayout';
 import './Dashboard.less';
 
 function Dashboard() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Welcome HR Dashboard
-        </p>
-      </header>
+      <DashboardLayout>
+        <p>Dashboard HR</p>
+      </DashboardLayout>
     </div>
   );
 }
