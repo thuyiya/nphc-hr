@@ -1,21 +1,18 @@
 import { Layout } from "antd";
 import React from "react";
 import SideBar from "./SideBar";
+import Profile from "./Profile";
 
 const { Content } = Layout;
 
 type Props = {
-    children: JSX.Element,
-  };
+  children: JSX.Element;
+};
 
 const DashboardLayout: React.FC<Props> = ({ children }) => (
   <Layout>
-    <SideBar />
+    <SideBar header={<Profile name="Long User Name" />} />
     <Layout>
-      {/* <Header
-        className="site-layout-sub-header-background"
-        style={{ padding: 0 }}
-      /> */}
       <Content style={{ margin: "8px" }}>
         <div
           className="site-layout-background"
@@ -24,9 +21,6 @@ const DashboardLayout: React.FC<Props> = ({ children }) => (
           {children}
         </div>
       </Content>
-      {/* <Footer style={{ textAlign: "center" }}>
-        Ant Design ©2018 Created by Ant UED
-      </Footer> */}
     </Layout>
   </Layout>
 );

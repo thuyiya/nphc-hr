@@ -5,7 +5,7 @@ import { DASHBOARD_ROUTES } from "../routes/route-paths";
 const { Sider } = Layout;
 
 type Props = {
-  header: JSX.Element;
+  header?: JSX.Element;
 };
 
 const SideBar: React.FC<Props> = ({ header }) => {
