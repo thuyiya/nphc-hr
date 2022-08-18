@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import { SUCCESS_RESPONCE, ERROR_RESPONCE } from "../common/messages";
+import multer from "multer";
 import data from '../sample-data/employees.json'
 
 const EmployeeController = async (req: Request, res: Response) => {
@@ -10,4 +11,12 @@ const EmployeeController = async (req: Request, res: Response) => {
   }
 };
 
-export { EmployeeController };
+const UploadEmployeer = async (req: Request, res: Response) => {
+  try {
+    return res.status(400).json(SUCCESS_RESPONCE.success(req.files));
+  } catch (e) {
+    return res.status(400).json(ERROR_RESPONCE.notFound((e as Error).message));
+  }
+};
+
+export { EmployeeController, UploadEmployeer };
