@@ -1,5 +1,8 @@
 import type { Request, Response, NextFunction } from 'express';
+import multer from 'multer';
 import { ERROR_RESPONCE } from '../common/messages';
+
+const upload = multer({ dest: "uploads/" });
 
 const EmployeeValidator = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -9,6 +12,9 @@ const EmployeeValidator = async (req: Request, res: Response, next: NextFunction
   }
 };
 
+const UploadValidator =  upload.array("files")
+
 export {
   EmployeeValidator,
+  UploadValidator
 };

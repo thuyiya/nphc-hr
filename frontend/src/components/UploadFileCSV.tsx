@@ -63,7 +63,7 @@ const UploadFileCSV: React.FC = () => {
     try {
       setTimeout(() => {
         onSuccess("ok");
-      }, 0);
+      }, 3000);
     } catch (error) {
       onError("Error");
     }
