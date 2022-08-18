@@ -4,15 +4,7 @@ import { ColumnsType } from 'antd/es/table';
 import { EmployeeType } from "../types"
 import { STRINGS } from "../constants";
 
-interface DataType {
-    key: React.Key;
-    id: string;
-    name: string;
-    login: string;
-    salary: number;
-  }
-
-const columns: ColumnsType<DataType> = [
+const columns: ColumnsType<EmployeeType> = [
   {
     title: STRINGS.EMPLOYEE.TABLE_KEY.ID.NAME,
     dataIndex: STRINGS.EMPLOYEE.TABLE_KEY.ID.KEY,
@@ -51,7 +43,7 @@ const columns: ColumnsType<DataType> = [
 ];
 
 type Props = {
-    data: any
+    data: EmployeeType[]
 }
 
 const EmployeeTabel: React.FC<Props> = ({ data = [] }) => {

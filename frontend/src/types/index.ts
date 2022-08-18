@@ -1,8 +1,9 @@
 interface EmployeeType {
+  key: React.Key;
   id: string;
   name: string;
   login: string;
-  salary: number
+  salary: number;
 }
 interface EnvConfigType {
   base_url: string;
