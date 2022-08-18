@@ -12,7 +12,7 @@ const EmployeeValidator = async (req: Request, res: Response, next: NextFunction
   }
 };
 
-const UploadValidator =  upload.array("files")
+const UploadValidator =  upload.array("csv")
 
 export {
   EmployeeValidator,

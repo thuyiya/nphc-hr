@@ -26,7 +26,7 @@ const UploadEmplyeeWithCsv: React.FC = () => {
         Upload Emplyee 
       </Button>
       <Modal title="Upload Emplyee" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <UploadFileCSV />
+        <UploadFileCSV isModalVisible={isModalVisible}/>
       </Modal>
     </div>
   );

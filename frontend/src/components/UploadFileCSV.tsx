@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   LoadingOutlined,
   UploadOutlined,
@@ -31,7 +31,11 @@ const beforeUpload = (file: RcFile) => {
   return isCsv && isLt2M;
 };
 
-const UploadFileCSV: React.FC = () => {
+type Props = {
+  isModalVisible?: boolean
+}
+
+const UploadFileCSV: React.FC<Props> = ({ isModalVisible }) => {
   const [loading, setLoading] = useState(false);
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
@@ -43,9 +47,6 @@ const UploadFileCSV: React.FC = () => {
       return;
     }
     if (info.file.status === "done") {
-
-      console.log("info.file.originFileObj ", info.file.originFileObj)
-      
       // Get this url from response in real world.
       getBase64(info.file.originFileObj as RcFile, () => {
         setLoading(false);
@@ -66,11 +67,12 @@ const UploadFileCSV: React.FC = () => {
 
     try {
       const endpoint = new EndpointService();
-
-      const files: any = [file]
+      
+      delete file.uid
 
       const data = new FormData();
-      data.append("files", files);
+      
+      data.append("csv", file);
 
       const response = await fetch(endpoint.uploadFiles, {
         method: "POST",
@@ -100,6 +102,10 @@ const UploadFileCSV: React.FC = () => {
       prevState.filter((data) => data.uid !== file.uid)
     );
   };
+
+  useEffect(() => {
+    setFileList([]);
+  }, [isModalVisible])
 
   return (
     <Space direction="vertical">
