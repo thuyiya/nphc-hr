@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Typography, Row, Col } from "antd";
 import EmployeeTabel from "./EmployeeTabel";
 import NumberInputs from "./NumberInputs";
@@ -6,40 +6,6 @@ import EndpointService from "../services/endpoint";
 import UploadEmplyeeWithCsv from "./UploadEmplyeeWithCsv";
 import { EmployeeType } from "../types";
 const { Title } = Typography;
-
-type StateType = {
-  maximumSalary: number;
-  minimumSalary: number;
-  data: EmployeeType[];
-  filteredData: EmployeeType[];
-};
-
-type ActionType = {
-  type: string;
-  payload: any;
-};
-
-// const reducer = (state: StateType, action: ActionType) => {
-//   switch (action.type) {
-//     case "SET_DATA":
-//       return {
-//         ...state,
-//         data: action.payload,
-//       };
-//     case "MAX":
-//       return {
-//         ...state,
-//         maximumSalary: action.payload
-//       };
-//     case "MIN":
-//       return {
-//         ...state,
-//         minimumSalary: action.payload
-//       };
-//     default:
-//       return state;
-//   }
-// };
 
 const Employee: React.FC = () => {
   const [data, setData] = useState<EmployeeType[]>([]);
