@@ -1,16 +1,17 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useMemo, useState } from "react";
 import { Typography, Row, Col } from "antd";
 import EmployeeTabel from "./EmployeeTabel";
 import NumberInputs from "./NumberInputs";
 import EndpointService from "../services/endpoint";
 import UploadEmplyeeWithCsv from "./UploadEmplyeeWithCsv";
+import { EmployeeType } from "../types";
 const { Title } = Typography;
 
 type StateType = {
-  maximumSalary: number | undefined;
-  minimumSalary: number | undefined;
-  data: [];
-  filteredData: [];
+  maximumSalary: number;
+  minimumSalary: number;
+  data: EmployeeType[];
+  filteredData: EmployeeType[];
 };
 
 type ActionType = {
@@ -18,35 +19,32 @@ type ActionType = {
   payload: any;
 };
 
-const reducer = (state: StateType, action: ActionType) => {
-  switch (action.type) {
-    case "SET_DATA":
-      return {
-        ...state,
-        data: action.payload,
-      };
-    case "MAX":
-      return {
-        ...state,
-        maximumSalary: action.payload,
-      };
-    case "MIN":
-      return {
-        ...state,
-        minimumSalary: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+// const reducer = (state: StateType, action: ActionType) => {
+//   switch (action.type) {
+//     case "SET_DATA":
+//       return {
+//         ...state,
+//         data: action.payload,
+//       };
+//     case "MAX":
+//       return {
+//         ...state,
+//         maximumSalary: action.payload
+//       };
+//     case "MIN":
+//       return {
+//         ...state,
+//         minimumSalary: action.payload
+//       };
+//     default:
+//       return state;
+//   }
+// };
 
 const Employee: React.FC = () => {
-  const [state, dispatch] = useReducer(reducer, {
-    maximumSalary: undefined,
-    minimumSalary: undefined,
-    data: [],
-    filteredData: [],
-  });
+  const [data, setData] = useState<EmployeeType[]>([]);
+  const [maximumSalary, setMaximumSalary] = useState("");
+  const [minimumSalary, setMinimumSalary] = useState("");
 
   const getEmplyees = async () => {
     try {
@@ -54,27 +52,53 @@ const Employee: React.FC = () => {
       const response = await fetch(endpoint.getEmployees);
 
       const _results = await response.json();
-      dispatch({
-        type: "SET_DATA",
-        payload: _results.data.map((_data: any) => ({
+
+      setData(
+        _results.data.map((_data: any) => ({
           key: _data.id,
           id: _data.id,
           piture: _data.profile_pic,
           name: _data.full_name,
           login: _data.login_id,
           salary: _data.salary,
-        })),
-      });
+        }))
+      );
     } catch (error) {
       console.log(error);
     }
   };
 
+  const filterData = (): EmployeeType[] => {
+    console.log("func called");
+    if (
+      maximumSalary !== undefined &&
+      minimumSalary !== undefined &&
+      (Number(maximumSalary) > 0 || Number(minimumSalary) > 0)
+    ) {
+      return data.filter(
+        (emp: EmployeeType) =>
+          emp.salary >= Number(minimumSalary) &&
+          emp.salary <= Number(maximumSalary)
+      );
+    } else if (maximumSalary !== undefined && Number(minimumSalary) > 0) {
+      return data.filter(
+        (emp: EmployeeType) => emp.salary >= Number(minimumSalary)
+      );
+    }
+    if (minimumSalary !== undefined && Number(maximumSalary) > 0) {
+      return data.filter(
+        (emp: EmployeeType) => emp.salary <= Number(maximumSalary)
+      );
+    } else {
+      return data;
+    }
+  };
+
+  const getFilterdData = useMemo(() => filterData(), [data]);
+
   useEffect(() => {
     getEmplyees();
   }, []);
-
-  const { minimumSalary, maximumSalary, data } = state;
 
   return (
     <div>
@@ -84,12 +108,7 @@ const Employee: React.FC = () => {
             prefix={true}
             label={"Minimum Salary"}
             value={minimumSalary}
-            onChange={(input) =>
-              dispatch({
-                type: "MIN",
-                payload: input.target.value,
-              })
-            }
+            onChange={(input) => setMinimumSalary(input.target.value)}
           />
         </Col>
         <Col>
@@ -109,12 +128,7 @@ const Employee: React.FC = () => {
             prefix={false}
             label={"Maximum Salary"}
             value={maximumSalary}
-            onChange={(input) =>
-              dispatch({
-                type: "MAX",
-                payload: input.target.value,
-              })
-            }
+            onChange={(input) => setMaximumSalary(input.target.value)}
           />
         </Col>
         <Col>
@@ -126,7 +140,7 @@ const Employee: React.FC = () => {
           Employees
         </Title>
         <Col span={24}>
-          <EmployeeTabel data={data} />
+          <EmployeeTabel data={filterData()} />
         </Col>
       </Row>
     </div>
