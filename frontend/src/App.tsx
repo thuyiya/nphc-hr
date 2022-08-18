@@ -1,13 +1,9 @@
-import './App.less';
+import { Dashboard } from './screens';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Welcome
-        </p>
-      </header>
+      <Dashboard />
     </div>
   );
 }
