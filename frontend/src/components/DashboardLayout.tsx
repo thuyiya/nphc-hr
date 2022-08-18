@@ -6,7 +6,7 @@ import Profile from "./Profile";
 const { Content } = Layout;
 
 type Props = {
-  children: JSX.Element;
+  children: JSX.Element[] | JSX.Element
 };
 
 const DashboardLayout: React.FC<Props> = ({ children }) => (
