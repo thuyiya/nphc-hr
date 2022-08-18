@@ -1,6 +1,6 @@
-import { ENV_CONFIG } from "../types";
+import { EnvConfigType } from "../types";
 
-const findEnvironmentVariable = (): ENV_CONFIG => {
+const findEnvironmentVariable = (): EnvConfigType => {
   switch (process.env.REACT_APP_ENV) {
     case "development":
       return {

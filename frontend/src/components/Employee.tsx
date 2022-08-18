@@ -1,4 +1,5 @@
 import { Typography, Row, Col } from "antd";
+import EmployeeTabel from "./EmployeeTabel";
 import NumberInputs from "./NumberInputs";
 
 const { Title } = Typography;
@@ -30,7 +31,9 @@ const Employee: React.FC = () => {
         <Title level={4} style={{ marginTop: 16, marginBottom: 16 }}>
           Employees
         </Title>
-        <Col span={24}>Employee Table</Col>
+        <Col span={24}>
+          <EmployeeTabel data={[]}/>
+        </Col>
       </Row>
     </div>
   );
