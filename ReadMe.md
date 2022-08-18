@@ -22,6 +22,23 @@ The Rest Api is developed using Express
 
 Go to `localhost:3000` for access fronend, And to access backend use `localhost:8000`.
 
+## Task
+### USER STORY 1
+Upload Users using csv, You can find sample CSV file from  `sample` folder on root of this project
+
+### USER STORY 2
+Employee Dashboard Feature
+- To view only n employees details at one time
+- Able to filter employees based on salary range
+- Able to order the list by id, employee name, login or salary ascending or
+descending.
+### USER STORY 3
+CRUD Feature on employees
+- Create new employees
+- Update exiting emplyoee
+- Delete emplyoee
+- View employee details with given id
+
 ### Get Started
 
 #### To run simple run of the application
