@@ -3,7 +3,7 @@ import { Typography, Row, Col } from "antd";
 import EmployeeTabel from "./EmployeeTabel";
 import NumberInputs from "./NumberInputs";
 import EndpointService from '../services/endpoint';
-
+import UploadEmplyeeWithCsv from './UploadEmplyeeWithCsv'
 const { Title } = Typography;
 
 const Employee: React.FC = () => {
@@ -52,6 +52,9 @@ const Employee: React.FC = () => {
         </Col>
         <Col>
           <NumberInputs prefix={false} label={"Maximum Salary"} />
+        </Col>
+        <Col>
+        <UploadEmplyeeWithCsv />
         </Col>
       </Row>
       <Row>
