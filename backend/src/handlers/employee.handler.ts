@@ -1,11 +1,11 @@
 import type { Request, Response } from "express";
-import { createEmployee } from "../services/employee.services";
+import { createEmployee, removeEmployeeById, getAllEmployee } from "../services/employee.services";
 import { SUCCESS_RESPONSE, ERROR_RESPONSE } from "../common/messages";
-import data from '../sample-data/employees.json'
-
+import { ObjectId } from "mongoose";
 const GetEmployees = async (req: Request, res: Response) => {
   try {
-    return res.status(200).json(SUCCESS_RESPONSE.success(data));
+    const allEmp = await getAllEmployee();
+    return res.status(200).json(SUCCESS_RESPONSE.success(allEmp));
   } catch (e) {
     return res.status(400).json(ERROR_RESPONSE.notFound((e as Error).message));
   }
@@ -26,7 +26,14 @@ const CreateEmployees = async (req: Request, res: Response) => {
 
 const RemoveEmployee = async (req: Request, res: Response) => {
   try {
-    return res.status(200).json(SUCCESS_RESPONSE.success({}));
+
+    if(!req.params.id) {
+      return 
+    }
+
+    const removeEmp = await removeEmployeeById(req.params.id);
+
+    return res.status(200).json(SUCCESS_RESPONSE.success(removeEmp));
   } catch (e) {
     return res.status(400).json(ERROR_RESPONSE.notFound((e as Error).message));
   }

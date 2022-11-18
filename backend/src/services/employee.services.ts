@@ -9,4 +9,20 @@ const createEmployee = async (empObject: EmployeeType) => {
   }
 };
 
-export { createEmployee };
+const removeEmployeeById = async (id: string) => {
+    try {
+      return await Employee.deleteOne({ _id: id });
+    } catch (e) {
+      throw e;
+    }
+  };
+
+  const getAllEmployee = async () => {
+    try {
+      return await Employee.find({ });
+    } catch (e) {
+      throw e;
+    }
+  };
+
+export { createEmployee, removeEmployeeById, getAllEmployee };
