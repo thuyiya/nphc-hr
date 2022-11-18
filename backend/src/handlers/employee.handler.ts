@@ -5,14 +5,7 @@ import data from '../sample-data/employees.json'
 
 const GetEmployees = async (req: Request, res: Response) => {
   try {
-    return res.status(200).json(SUCCESS_RESPONSE.success(data.map(x => {
-      return {
-        "full_name": x.full_name,
-        "login_id": x.login_id,
-        "salary": x.salary,
-        "profile_pic": x.profile_pic
-    }
-    })));
+    return res.status(200).json(SUCCESS_RESPONSE.success(data));
   } catch (e) {
     return res.status(400).json(ERROR_RESPONSE.notFound((e as Error).message));
   }
