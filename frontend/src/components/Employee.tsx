@@ -21,9 +21,9 @@ const Employee: React.FC = () => {
 
       setData(
         _results.data.map((_data: any) => ({
-          key: _data.id,
-          id: _data.id,
-          piture: _data.profile_pic,
+          key: _data._id,
+          id: _data._id,
+          picture: _data.profile_pic,
           name: _data.full_name,
           login: _data.login_id,
           salary: _data.salary,

@@ -12,7 +12,7 @@ type Props = {
     data: EmployeeType[]
 }
 
-const EmployeeTabel: React.FC<Props> = ({ data = [] }) => {
+const EmployeeTable: React.FC<Props> = ({ data = [] }) => {
 
   const columns: ColumnsType<EmployeeType> = [
     {
@@ -53,7 +53,7 @@ const EmployeeTabel: React.FC<Props> = ({ data = [] }) => {
   const removeEmployee = async (employee: EmployeeType) => {
     try {
       const endpoint = new EndpointService();
-      endpoint.params = employee.id;
+      endpoint.params = employee._id;
       const response = await fetch(endpoint.removeEmployees, { method: "DELETE"});
 
       await response.json();
@@ -92,4 +92,4 @@ const EmployeeTabel: React.FC<Props> = ({ data = [] }) => {
   );
 };
 
-export default EmployeeTabel;
+export default EmployeeTable;
