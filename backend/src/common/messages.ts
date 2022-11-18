@@ -1,4 +1,4 @@
-const ERROR_RESPONCE = {
+const ERROR_RESPONSE = {
   notFound: (e: any) => {
     return {
       code: 4040,
@@ -22,7 +22,7 @@ const ERROR_RESPONCE = {
   },
 };
 
-const SUCCESS_RESPONCE = {
+const SUCCESS_RESPONSE = {
   success: (s: any) => {
     return {
       code: 2001,
@@ -34,6 +34,6 @@ const SUCCESS_RESPONCE = {
 };
 
 export {
-  ERROR_RESPONCE,
-  SUCCESS_RESPONCE,
+  ERROR_RESPONSE,
+  SUCCESS_RESPONSE,
 };
