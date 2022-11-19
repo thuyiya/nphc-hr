@@ -21,11 +21,7 @@ const Employee: FC = () => {
       const _results = await response.json();
       const employees = _results.data.map((_data: any) => ({
         key: _data._id,
-        _id: _data._id,
-        picture: _data.profile_pic,
-        name: _data.full_name,
-        login: _data.login_id,
-        salary: _data.salary,
+        ..._data
       }))
       setState({
         employees

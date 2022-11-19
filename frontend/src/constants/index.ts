@@ -9,11 +9,11 @@ const STRINGS = {
         NAME: "Id",
       },
       NAME:  {
-        KEY: "name",
+        KEY: "full_name",
         NAME: "Name",
       },
       LOGIN:  {
-        KEY: "login",
+        KEY: "login_id",
         NAME: "Login",
       },
       SALARY:  {

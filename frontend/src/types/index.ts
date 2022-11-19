@@ -2,7 +2,7 @@ interface EmployeeType {
   key: React.Key;
   _id: string;
   full_name: string;
-  login: string;
+  login_id: string;
   salary: number;
 }
 interface EnvConfigType {

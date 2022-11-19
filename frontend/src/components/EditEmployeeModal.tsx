@@ -1,8 +1,9 @@
-import { Button, Modal, Form, Input } from "antd";
+import { Button, Modal, Form, Input, message } from "antd";
 import React, { useState, useContext } from "react";
 import { EditOutlined } from "@ant-design/icons";
 import { AppContext, AppContextType } from "../contexts/AppContext";
 import { EmployeeType } from "../types";
+import EndpointService from "../services/endpoint";
 
 const EditEmployeeModal: React.FC<{ record: EmployeeType }> = ({ record }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -12,16 +13,34 @@ const EditEmployeeModal: React.FC<{ record: EmployeeType }> = ({ record }) => {
     setState,
   } = useContext(AppContext) as AppContextType;
 
-  const updateEmployee = (employee: EmployeeType) => {
-    setState({
-      employees: employees.map((emp) => {
-        if (emp._id === employee._id) {
-          emp = employee;
-        }
-        return emp;
-      }),
-    });
-    closeModal();
+  const updateEmployee = async (employee: EmployeeType) => {
+    try {
+      let configObject = {
+        method: "PUT",                    
+        headers: {
+          "Content-Type": "application/json" 
+        },
+        body: JSON.stringify(employee)
+      };
+      const endpoint = new EndpointService();
+      const response = await fetch(endpoint.getEmployees, configObject);
+
+      const _results = await response.json();
+
+      if(!_results.data.modifiedCount) { throw new Error("Update Failed")}
+
+      setState({
+        employees: employees.map((emp) => {
+          if (emp._id === employee._id) {
+            emp = employee;
+          }
+          return emp;
+        }),
+      });
+      closeModal();
+    } catch (error) {
+      message.success(`Oops!, Something went wrong with removing employee ${employee.full_name}`)
+    }
   };
 
   const showModal = () => {
@@ -73,8 +92,8 @@ const EditEmployeeModal: React.FC<{ record: EmployeeType }> = ({ record }) => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           initialValues={{
-            name: record.full_name,
-            login: record.login,
+            full_name: record.full_name,
+            login_id: record.login_id,
             salary: record.salary,
           }}
           onFinish={onFinish}
@@ -83,14 +102,14 @@ const EditEmployeeModal: React.FC<{ record: EmployeeType }> = ({ record }) => {
         >
           <Form.Item
             label="Name"
-            name="name"
+            name="full_name"
             rules={[{ required: true, message: "Please input name!" }]}
           >
             <Input placeholder="Name" />
           </Form.Item>
           <Form.Item
             label="Login"
-            name="login"
+            name="login_id"
             rules={[{ required: true, message: "Please input login!" }]}
           >
             <Input placeholder="Login" />

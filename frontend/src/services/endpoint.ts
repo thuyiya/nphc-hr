@@ -16,6 +16,10 @@ class EndpointService {
     return `${EndpointService.BASE_URL}/${ENDPOINTS.employees}`;
   }
 
+  get updateEmployees() {
+    return `${EndpointService.BASE_URL}/${ENDPOINTS.employees}`;
+  }
+
   get uploadFiles() {
     return `${EndpointService.BASE_URL}/${ENDPOINTS.usersUpload}`;
   }
