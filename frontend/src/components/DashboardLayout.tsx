@@ -1,15 +1,12 @@
 import { Layout } from "antd";
-import React from "react";
 import SideBar from "./SideBar";
 import Profile from "./Profile";
+import { Outlet } from "react-router-dom";
 
 const { Content } = Layout;
 
-type Props = {
-  children: JSX.Element[] | JSX.Element
-};
 
-const DashboardLayout: React.FC<Props> = ({ children }) => (
+const DashboardLayout = () => (
   <Layout>
     <SideBar header={<Profile name="Long User Name" />} />
     <Layout>
@@ -18,7 +15,7 @@ const DashboardLayout: React.FC<Props> = ({ children }) => (
           className="site-layout-background"
           style={{ padding: 24, minHeight: window.innerHeight }}
         >
-          {children}
+          <Outlet />
         </div>
       </Content>
     </Layout>

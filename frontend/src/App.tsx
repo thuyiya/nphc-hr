@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppContext, initState, AppContextType } from "./contexts/AppContext";
 import { Dashboard, Analytics } from "./screens";
+import DashboardLayout from "./components/DashboardLayout";
 
 const App = () => {
   const [state, setState] = useState(initState);
@@ -12,7 +13,7 @@ const App = () => {
         setState((prevState) => ({ ...prevState, ...updates }));
       },
     }),
-    [state, setState]
+    [state, setState],
   );
 
   return (
@@ -20,9 +21,11 @@ const App = () => {
       <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/" element={<DashboardLayout />} >
+              <Route index element={<Dashboard />} />
+              <Route path="/analytics" element={<Analytics />} />
+            </Route>
+            {/* <Route path="*" element={<Navigate to="/dashboard" replace />} /> */}
           </Routes>
         </BrowserRouter>
       </div>
