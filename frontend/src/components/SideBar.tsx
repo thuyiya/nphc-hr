@@ -13,12 +13,12 @@ type Props = {
 const SideBar: React.FC<Props> = ({ header }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const [active, setActive] = useState(location.pathname);
 
   function handleClick(e: any) {
     setActive(e.key);
-    navigate(DASHBOARD_ROUTES.filter((route) => e.key == route.key)[0].to);
+    navigate(DASHBOARD_ROUTES.filter((route) => e.key === route.key)[0].to);
   }
 
   return (
