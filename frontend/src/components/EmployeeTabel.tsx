@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Space, Table, Button, Modal, message } from "antd";
 import { DeleteOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import { ColumnsType } from 'antd/es/table';
@@ -5,6 +6,7 @@ import { EmployeeType } from "../types"
 import { STRINGS } from "../constants";
 import EndpointService from "../services/endpoint";
 import EditEmployeeModal from "./EditEmployeeModal"
+import { AppContextType, AppContext } from "../contexts/AppContext";
 
 const { confirm } = Modal;
 
@@ -12,8 +14,9 @@ type Props = {
     data: EmployeeType[]
 }
 
-const EmployeeTable: React.FC<Props> = ({ data = [] }) => {
-
+const EmployeeTable: React.FC<Props> = ({ data = []}) => {
+  const { state: { employees }, setState } = useContext(AppContext) as AppContextType;
+  
   const columns: ColumnsType<EmployeeType> = [
     {
       title: STRINGS.EMPLOYEE.TABLE_KEY.ID.NAME,
@@ -54,9 +57,13 @@ const EmployeeTable: React.FC<Props> = ({ data = [] }) => {
     try {
       const endpoint = new EndpointService();
       endpoint.params = employee._id;
+
       const response = await fetch(endpoint.removeEmployees, { method: "DELETE"});
 
       await response.json();
+
+      setState({ employees: employees.filter(emp => emp._id != employee._id)})
+
       message.success(`Employee ${employee.name} removed succssfull`)
     } catch (error) {
       message.success(`Oops!, Something went wrong with removing employee ${employee.name}`)

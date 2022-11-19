@@ -5,7 +5,7 @@ const STRINGS = {
     },
     TABLE_KEY: {
       ID: {
-        KEY: "id",
+        KEY: "_id",
         NAME: "Id",
       },
       NAME:  {

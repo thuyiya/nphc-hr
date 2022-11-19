@@ -1,34 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext, FC } from "react";
 import { Typography, Row, Col } from "antd";
-import EmployeeTabel from "./EmployeeTabel";
+import EmployeeTable from "./EmployeeTabel";
 import NumberInputs from "./NumberInputs";
 import EndpointService from "../services/endpoint";
-import UploadEmplyeeWithCsv from "./UploadEmplyeeWithCsv";
+import UploadEmployeeWithCsv from "./UploadEmployeeWithCsv";
 import { EmployeeType } from "../types";
+import { AppContext, AppContextType } from "../contexts/AppContext";
 const { Title } = Typography;
 
-const Employee: React.FC = () => {
-  const [data, setData] = useState<EmployeeType[]>([]);
+const Employee: FC = () => {
+  const { state: { employees }, setState } = useContext(AppContext) as AppContextType;
   const [maximumSalary, setMaximumSalary] = useState("");
   const [minimumSalary, setMinimumSalary] = useState("");
 
-  const getEmplyees = async () => {
+  const getEmployees = async () => {
     try {
       const endpoint = new EndpointService();
       const response = await fetch(endpoint.getEmployees);
 
       const _results = await response.json();
-
-      setData(
-        _results.data.map((_data: any) => ({
-          key: _data._id,
-          id: _data._id,
-          picture: _data.profile_pic,
-          name: _data.full_name,
-          login: _data.login_id,
-          salary: _data.salary,
-        }))
-      );
+      const employees = _results.data.map((_data: any) => ({
+        key: _data._id,
+        _id: _data._id,
+        picture: _data.profile_pic,
+        name: _data.full_name,
+        login: _data.login_id,
+        salary: _data.salary,
+      }))
+      setState({
+        employees
+      });
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +65,7 @@ const Employee: React.FC = () => {
   // const getFilterdData = useMemo(() => filterData(data), []);
 
   useEffect(() => {
-    getEmplyees();
+    getEmployees();
   }, []);
 
   return (
@@ -99,7 +100,7 @@ const Employee: React.FC = () => {
           />
         </Col>
         <Col>
-          <UploadEmplyeeWithCsv />
+          <UploadEmployeeWithCsv />
         </Col>
       </Row>
       <Row>
@@ -107,7 +108,7 @@ const Employee: React.FC = () => {
           Employees
         </Title>
         <Col span={24}>
-          <EmployeeTabel data={filterData(data)} />
+          <EmployeeTable data={filterData(employees)} />
         </Col>
       </Row>
     </div>
