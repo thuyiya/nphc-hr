@@ -64,9 +64,9 @@ const EmployeeTable: React.FC<Props> = ({ data = []}) => {
 
       setState({ employees: employees.filter(emp => emp._id != employee._id)})
 
-      message.success(`Employee ${employee.name} removed succssfull`)
+      message.success(`Employee ${employee.full_name} removed succssfull`)
     } catch (error) {
-      message.success(`Oops!, Something went wrong with removing employee ${employee.name}`)
+      message.success(`Oops!, Something went wrong with removing employee ${employee.full_name}`)
     }
   }
 
@@ -74,7 +74,7 @@ const EmployeeTable: React.FC<Props> = ({ data = []}) => {
     confirm({
       title: 'Are you sure delete this employee?',
       icon: <ExclamationCircleOutlined />,
-      content: `This will delete ${employee.name} from the database permanently`,
+      content: `This will delete ${employee.full_name} from the database permanently`,
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',

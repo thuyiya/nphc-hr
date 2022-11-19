@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { createEmployee, removeEmployeeById, getAllEmployee } from "../services/employee.services";
+import { createEmployee, removeEmployeeById, getAllEmployee, updateEmployeeById } from "../services/employee.services";
 import { SUCCESS_RESPONSE, ERROR_RESPONSE } from "../common/messages";
 import { ObjectId } from "mongoose";
 const GetEmployees = async (req: Request, res: Response) => {
@@ -39,6 +39,17 @@ const RemoveEmployee = async (req: Request, res: Response) => {
   }
 };
 
+const UpdateEmployee = async (req: Request, res: Response) => {
+  try {
+
+    const removeEmp = await updateEmployeeById(req.body);
+
+    return res.status(200).json(SUCCESS_RESPONSE.success(removeEmp));
+  } catch (e) {
+    return res.status(400).json(ERROR_RESPONSE.notFound((e as Error).message));
+  }
+};
+
 const UploadEmployer = async (req: Request, res: Response) => {
   try {
     return res.status(400).json(SUCCESS_RESPONSE.success({}));
@@ -47,4 +58,4 @@ const UploadEmployer = async (req: Request, res: Response) => {
   }
 };
 
-export { GetEmployees, UploadEmployer, RemoveEmployee, CreateEmployees };
+export { GetEmployees, UploadEmployer, RemoveEmployee, CreateEmployees, UpdateEmployee };

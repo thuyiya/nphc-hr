@@ -1,7 +1,7 @@
 interface EmployeeType {
   key: React.Key;
   _id: string;
-  name: string;
+  full_name: string;
   login: string;
   salary: number;
 }

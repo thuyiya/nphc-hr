@@ -73,7 +73,7 @@ const EditEmployeeModal: React.FC<{ record: EmployeeType }> = ({ record }) => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           initialValues={{
-            name: record.name,
+            name: record.full_name,
             login: record.login,
             salary: record.salary,
           }}

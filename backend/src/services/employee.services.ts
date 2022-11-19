@@ -10,19 +10,32 @@ const createEmployee = async (empObject: EmployeeType) => {
 };
 
 const removeEmployeeById = async (id: string) => {
-    try {
-      return await Employee.deleteOne({ _id: id });
-    } catch (e) {
-      throw e;
-    }
-  };
+  try {
+    return await Employee.deleteOne({ _id: id });
+  } catch (e) {
+    throw e;
+  }
+};
 
-  const getAllEmployee = async () => {
-    try {
-      return await Employee.find({ });
-    } catch (e) {
-      throw e;
-    }
-  };
+const getAllEmployee = async () => {
+  try {
+    return await Employee.find({});
+  } catch (e) {
+    throw e;
+  }
+};
 
-export { createEmployee, removeEmployeeById, getAllEmployee };
+const updateEmployeeById = async (empObject: EmployeeType) => {
+  try {
+    return await Employee.updateOne({ _id: empObject._id }, { 
+      full_name: empObject.full_name,
+      salary: empObject.salary,
+      login_id: empObject.login_id,
+
+     });
+  } catch (e) {
+    throw e;
+  }
+};
+
+export { createEmployee, removeEmployeeById, getAllEmployee, updateEmployeeById };
