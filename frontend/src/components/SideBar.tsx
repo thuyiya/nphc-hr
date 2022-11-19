@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-access-key */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import { DASHBOARD_ROUTES } from "../routes/route-paths";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const { Sider } = Layout;
 
@@ -12,7 +12,9 @@ type Props = {
 
 const SideBar: React.FC<Props> = ({ header }) => {
   const navigate = useNavigate();
-  const [active, setActive] = useState("dashboard");
+  const location = useLocation();
+  
+  const [active, setActive] = useState(location.pathname);
 
   function handleClick(e: any) {
     setActive(e.key);
@@ -35,6 +37,7 @@ const SideBar: React.FC<Props> = ({ header }) => {
       <Menu
         onClick={handleClick}
         theme="dark"
+        selectable
         mode="inline"
         defaultSelectedKeys={[active]}
         selectedKeys={[active]}

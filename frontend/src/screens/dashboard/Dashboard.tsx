@@ -4,9 +4,11 @@ import Employee from "../../components/Employee";
 
 function Dashboard() {
   return (
-    <DashboardLayout>
+    <div className="App">
+      <DashboardLayout>
       <Employee />
     </DashboardLayout>
+    </div>
   );
 }
 

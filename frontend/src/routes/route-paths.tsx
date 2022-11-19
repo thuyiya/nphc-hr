@@ -2,13 +2,13 @@ import { PictureOutlined, BarChartOutlined } from "@ant-design/icons";
 
 const DASHBOARD_ROUTES = [
   {
-    key: "dashboard",
+    key: "/dashboard",
     to: "/",
     icon: <PictureOutlined />,
     label: `Dashboard`,
   },
   {
-    key: "analytics",
+    key: "/analytics",
     to: "/analytics",
     icon: <BarChartOutlined />,
     label: `Analytics`,
