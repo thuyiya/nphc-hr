@@ -18,7 +18,6 @@ const getBase64 = (file: RcFile, callback: () => void) => {
 };
 
 const beforeUpload = (file: RcFile) => {
-  console.log(file.type);
   const isCsv = file.type === "text/csv";
   if (!isCsv) {
     message.error("You can only upload csv file!");

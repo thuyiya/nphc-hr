@@ -8,7 +8,7 @@ import { EmployeeType } from "../types";
 import { AppContext, AppContextType } from "../contexts/AppContext";
 const { Title } = Typography;
 
-const Employee: FC = () => {
+const Employee = () => {
   const { state: { employees }, setState } = useContext(AppContext) as AppContextType;
   const [maximumSalary, setMaximumSalary] = useState("");
   const [minimumSalary, setMinimumSalary] = useState("");

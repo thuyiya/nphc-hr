@@ -1,10 +1,17 @@
-import { PictureOutlined } from "@ant-design/icons";
+import { PictureOutlined, BarChartOutlined } from "@ant-design/icons";
 
 const DASHBOARD_ROUTES = [
   {
-    key: "Function 1",
+    key: "dashboard",
+    to: "/",
     icon: <PictureOutlined />,
-    label: `Functions 1`,
+    label: `Dashboard`,
+  },
+  {
+    key: "analytics",
+    to: "/analytics",
+    icon: <BarChartOutlined />,
+    label: `Analytics`,
   },
 ];
 

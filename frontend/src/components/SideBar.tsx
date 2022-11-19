@@ -1,6 +1,8 @@
-import React from "react";
+/* eslint-disable jsx-a11y/no-access-key */
+import React, { useEffect, useState } from "react";
 import { Layout, Menu } from "antd";
 import { DASHBOARD_ROUTES } from "../routes/route-paths";
+import { useNavigate } from "react-router-dom";
 
 const { Sider } = Layout;
 
@@ -9,12 +11,21 @@ type Props = {
 };
 
 const SideBar: React.FC<Props> = ({ header }) => {
+  const navigate = useNavigate();
+  const [active, setActive] = useState("dashboard");
+
+  function handleClick(e: any) {
+    setActive(e.key);
+    navigate(DASHBOARD_ROUTES.filter((route) => e.key == route.key)[0].to);
+  }
+
   return (
     <Sider
+      trigger={null}
       breakpoint="lg"
       collapsedWidth="0"
       onBreakpoint={(broken) => {
-        console.log(broken);
+        // console.log(broken);
       }}
       onCollapse={(collapsed, type) => {
         console.log(collapsed, type);
@@ -22,10 +33,13 @@ const SideBar: React.FC<Props> = ({ header }) => {
     >
       {header}
       <Menu
+        onClick={handleClick}
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={["4"]}
+        defaultSelectedKeys={[active]}
+        selectedKeys={[active]}
         items={DASHBOARD_ROUTES}
+        style={{ backgroundColor: "transparent", color: "#ffffff" }}
       />
     </Sider>
   );
