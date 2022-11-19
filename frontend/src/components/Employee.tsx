@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, FC } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Typography, Row, Col } from "antd";
 import EmployeeTable from "./EmployeeTabel";
 import NumberInputs from "./NumberInputs";

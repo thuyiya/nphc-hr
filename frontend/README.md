@@ -44,3 +44,15 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+### VSCode: Cannot find module 'antd' or its corresponding type declarations
+
+
+The issue appears to be known issue with VSCode: https://github.com/Microsoft/TypeScript/issues/10346
+
+It can be fixed by manually adding
+
+/// <reference path="path/types.d.ts" />
+Then doing F1 -> reload window.
+
+Or apparently by installing vscode typescript hero plugin. I can't confirm plugin works as I had already fixed with manual reference and reload.
