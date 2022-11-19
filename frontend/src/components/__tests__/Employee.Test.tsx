@@ -4,7 +4,7 @@ import Employee from "../Employee";
 describe('<Employee />', () => {
     it('Snapshot', () => {
         const component = renderer.create(<Employee />);
-        let tree = component.toJSON();
+        const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     })
 })

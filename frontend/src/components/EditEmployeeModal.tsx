@@ -15,7 +15,7 @@ const EditEmployeeModal: React.FC<{ record: EmployeeType }> = ({ record }) => {
 
   const updateEmployee = async (employee: EmployeeType) => {
     try {
-      let configObject = {
+      const configObject = {
         method: "PUT",                    
         headers: {
           "Content-Type": "application/json" 

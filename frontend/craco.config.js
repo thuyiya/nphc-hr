@@ -1,4 +1,7 @@
-const CracoLessPlugin = require('craco-less');
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-env node */
+
+const CracoLessPlugin = require("craco-less");
 
 module.exports = {
   plugins: [
@@ -7,7 +10,7 @@ module.exports = {
       options: {
         lessLoaderOptions: {
           lessOptions: {
-            modifyVars: { '@primary-color': '#1DA57A' },
+            modifyVars: { "@primary-color": "#1DA57A" },
             javascriptEnabled: true,
           },
         },

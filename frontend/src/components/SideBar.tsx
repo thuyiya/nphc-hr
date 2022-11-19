@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-access-key */
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import { DASHBOARD_ROUTES } from "../routes/route-paths";
