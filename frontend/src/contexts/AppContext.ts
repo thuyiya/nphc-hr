@@ -10,6 +10,9 @@ export type AppContextType = {
 
 export const initState = {
   employees: [],
+  user: {
+    full_name: 'Adam Snow'
+  }
 };
 
 export const AppContext = React.createContext<AppContextType | null>(null);

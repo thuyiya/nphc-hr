@@ -7,7 +7,7 @@ import {
 import { message, Space, Upload, Button, Tooltip } from "antd";
 import type { UploadChangeParam } from "antd/es/upload";
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
-import EndpointService from "../services/endpoint";
+import EndpointService from "../../services/endpoint";
 
 const MAX_LENGTH = 28;
 

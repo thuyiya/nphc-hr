@@ -1,9 +1,9 @@
 import { Button, Modal, Form, Input, message } from "antd";
 import React, { useState, useContext } from "react";
 import { EditOutlined } from "@ant-design/icons";
-import { AppContext, AppContextType } from "../contexts/AppContext";
-import { EmployeeType } from "../types";
-import EndpointService from "../services/endpoint";
+import { AppContext, AppContextType } from "../../../contexts/AppContext";
+import { EmployeeType } from "../../../types";
+import EndpointService from "../../../services/endpoint";
 
 const EditEmployeeModal: React.FC<{ record: EmployeeType }> = ({ record }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);

@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Typography, Row, Col } from "antd";
 import EmployeeTable from "./EmployeeTabel";
 import NumberInputs from "./NumberInputs";
-import EndpointService from "../services/endpoint";
+import EndpointService from "../../../services/endpoint";
 import UploadEmployeeWithCsv from "./UploadEmployeeWithCsv";
-import { EmployeeType } from "../types";
-import { AppContext, AppContextType } from "../contexts/AppContext";
+import { EmployeeType } from "../../../types";
+import { AppContext, AppContextType } from "../../../contexts/AppContext";
 import './styles/TopHeader.less';
 const { Title } = Typography;
 

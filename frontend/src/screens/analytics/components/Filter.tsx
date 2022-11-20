@@ -40,7 +40,7 @@ const Filter:FC<Props> = ({ changeIncludedGender, changeGreaterThenAge }) => {
   };
 
   return (
-    <div className="container pane">
+    <div className="filter_container pane">
       <div className="header">Filter</div>
       <h3>Gender</h3>
       <div style={{ width: 275, margin: 5 }}>

@@ -2,11 +2,11 @@ import { useContext } from 'react';
 import { Space, Table, Button, Modal, message } from "antd";
 import { DeleteOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import { ColumnsType } from 'antd/es/table';
-import { EmployeeType } from "../types"
-import { STRINGS } from "../constants";
-import EndpointService from "../services/endpoint";
+import { EmployeeType } from "../../../types"
+import { STRINGS } from "../../../constants";
+import EndpointService from "../../../services/endpoint";
 import EditEmployeeModal from "./EditEmployeeModal"
-import { AppContextType, AppContext } from "../contexts/AppContext";
+import { AppContextType, AppContext } from "../../../contexts/AppContext";
 
 import './styles/EmployeeTable.less';
 

@@ -8,7 +8,7 @@ type Props = {
     name?: string
 }
 
-const SideBar: React.FC<Props> = ({ name = "No Name Found" }) => {
+const BoxViewProfile: React.FC<Props> = ({ name = "No Name Found" }) => {
   return (
     <div className="logo-container">
       <Avatar className="logo" size={64} icon={<PictureOutlined />} />
@@ -19,4 +19,4 @@ const SideBar: React.FC<Props> = ({ name = "No Name Found" }) => {
   );
 };
 
-export default SideBar;
+export default BoxViewProfile;

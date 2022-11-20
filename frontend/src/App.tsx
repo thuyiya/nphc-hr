@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppContext, initState, AppContextType } from "./contexts/AppContext";
 import { Dashboard, Analytics } from "./screens";
-import DashboardLayout from "./components/DashboardLayout";
+import DashboardLayout from "./components/Layouts/DashboardLayout";
 
 const App = () => {
   const [state, setState] = useState(initState);

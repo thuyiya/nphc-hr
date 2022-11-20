@@ -1,5 +1,5 @@
 import "./Dashboard.less";
-import Employee from "../../components/Employee";
+import Employee from "./components/Employee";
 
 function Dashboard() {
   return (

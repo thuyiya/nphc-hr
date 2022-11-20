@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
-import { DASHBOARD_ROUTES } from "../routes/route-paths";
+import { DASHBOARD_ROUTES } from "../../routes/route-paths";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const { Sider } = Layout;

@@ -3,7 +3,7 @@ import {
   DollarOutlined,
   FileSearchOutlined,
 } from "@ant-design/icons";
-import { numberValidationForInputs } from "../utils";
+import { numberValidationForInputs } from "../../../utils";
 import "./styles/NumberInputs.less";
 
 const { Text } = Typography;

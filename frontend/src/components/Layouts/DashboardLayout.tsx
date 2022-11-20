@@ -1,6 +1,6 @@
 import { Layout } from "antd";
-import SideBar from "./SideBar";
-import Profile from "./Profile";
+import SideBar from "../SideBar/SideBar";
+import Profile from "../Profiles/BoxViewProfile";
 import { Outlet } from "react-router-dom";
 
 const { Content } = Layout;

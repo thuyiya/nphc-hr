@@ -1,6 +1,6 @@
 import "./Analytics.less";
 import { useState, useContext, useEffect } from "react";
-import { Layout } from "antd";
+import { Layout, Col, Row } from "antd";
 import UserProfileView from "./components/UserProfileView";
 import { EmployeeType, GenderType } from "../../types";
 import { AppContext, AppContextType } from "../../contexts/AppContext";
@@ -13,17 +13,16 @@ import EmployeeList from "./components/EmployeeList";
 const { Sider, Content } = Layout;
 
 function Analytics() {
-  const [selectedEmployee, setEmployee] =
-    useState<EmployeeType>({
-      _id: '',
-      full_name: '',
-      age: 0,
-      login_id: '',
-      gender: 'Unknown',
-      salary: 0,
-      key: '',
-      activities: []
-    });
+  const [selectedEmployee, setEmployee] = useState<EmployeeType>({
+    _id: "",
+    full_name: "",
+    age: 0,
+    login_id: "",
+    gender: "Unknown",
+    salary: 0,
+    key: "",
+    activities: [],
+  });
   const {
     state: { employees },
   } = useContext(AppContext) as AppContextType;
@@ -57,41 +56,43 @@ function Analytics() {
     .filter((user) => user.age > greaterThenAge);
 
   return (
-    <div className="container">
-      <Layout style={{ height: 920 }}>
-        <Sider width={300} className="sider">
-          <Content style={{ height: 200 }}>
-            <UserProfileView employee={selectedEmployee} />
-          </Content>
-          <Content style={{ height: 300 }}>
-            <GenderGraph data={filteredData} />
-          </Content>
-          <Content style={{ height: 400 }}>
-            <Filter
-              changeGreaterThenAge={changeGreaterThenAge}
-              changeIncludedGender={changeIncludedGender}
-            />
-          </Content>
-        </Sider>
-        <Layout>
-          <Content style={{ height: 300 }}>
-            <Acivities employee={selectedEmployee} />
-          </Content>
-          <Layout>
-            <Layout style={{ height: 600 }}>
-              <Content>
-                <EmployeeAge data={filteredData} />
-              </Content>
+    <div>
+      <Row>
+        <Col span={6}>
+          <Sider width={300} className="sider">
+            <Content style={{ height: 200 }}>
+              <UserProfileView employee={selectedEmployee} />
+            </Content>
+            <Content style={{ height: 300 }}>
+              <GenderGraph data={filteredData} />
+            </Content>
+            <Content style={{ height: 400 }}>
+              <Filter
+                changeGreaterThenAge={changeGreaterThenAge}
+                changeIncludedGender={changeIncludedGender}
+              />
+            </Content>
+          </Sider>
+        </Col>
+        <Col span={18}>
+          <Row>
+            <Col span={24}>
+              <Acivities employee={selectedEmployee} />
+            </Col>
+            <Col span={16}>
+              <EmployeeAge data={filteredData} />
+            </Col>
+            <Col span={8}>
               <Sider width={300} style={{ backgroundColor: "#eee" }}>
                 <EmployeeList
                   data={filteredData}
                   changeSelectUser={changeSelectUser}
                 />
               </Sider>
-            </Layout>
-          </Layout>
-        </Layout>
-      </Layout>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
     </div>
   );
 }

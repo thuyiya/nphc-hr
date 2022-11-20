@@ -14,12 +14,13 @@ const EmployeeList:FC<Props> = ({ data, changeSelectUser }) => {
     }
 
     return (
-        <div className='container pane'>
+        <div className='employee_list_container pane'>
             <div className='header'>User List</div>
             <List
                 size="small"
                 bordered
                 dataSource={data}
+                className="list"
                 renderItem={(employee: EmployeeType) => <List.Item className='button-item' onClick = {() => selectUser(employee)}>
                     <div>
                         {employee.full_name + ':' + employee.age}

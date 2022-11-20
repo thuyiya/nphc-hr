@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {
     UploadOutlined,
   } from "@ant-design/icons";
-import UploadFileCSV from './UploadFileCSV';
+import UploadFileCSV from '../../../components/UploadView/UploadFileCSV';
   
 const UploadEmplyeeWithCsv: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
