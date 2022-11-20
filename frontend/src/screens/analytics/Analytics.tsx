@@ -1,5 +1,5 @@
 import "./Analytics.less";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useMemo } from "react";
 import { Layout, Col, Row } from "antd";
 import UserProfileView from "./components/UserProfileView";
 import { EmployeeType, GenderType } from "../../types";
@@ -45,15 +45,19 @@ function Analytics() {
     setIncludedGender(value);
   };
 
+  const filterEmployeeData = () => {
+    return employees
+    .filter((user) => includedGender.indexOf(user.gender) !== -1)
+    .filter((user) => user.age > greaterThenAge)
+  }
+
+  const filteredData = useMemo(() => filterEmployeeData(), [includedGender, employees, greaterThenAge])
+
   useEffect(() => {
     if (employees && employees.length > 0) {
       setEmployee(employees[0]);
     }
   }, []);
-
-  const filteredData = employees
-    .filter((user) => includedGender.indexOf(user.gender) !== -1)
-    .filter((user) => user.age > greaterThenAge);
 
   return (
     <div>
