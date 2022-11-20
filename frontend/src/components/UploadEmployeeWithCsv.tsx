@@ -21,7 +21,7 @@ const UploadEmplyeeWithCsv: React.FC = () => {
   };
 
   return (
-    <div style={{ margin: 8 }}>
+    <div>
       <Button type="primary" onClick={showModal} icon={<UploadOutlined />} >
         Upload Emplyee 
       </Button>

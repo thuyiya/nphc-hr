@@ -9,6 +9,14 @@ const createEmployee = async (empObject: EmployeeType) => {
   }
 };
 
+const insertManyEmployee = async (manyEmp: Array<EmployeeType>) => {
+  try {
+    return await Employee.insertMany(manyEmp);
+  } catch (e) {
+    throw e;
+  }
+};
+
 const removeEmployeeById = async (id: string) => {
   try {
     return await Employee.deleteOne({ _id: id });
@@ -38,4 +46,4 @@ const updateEmployeeById = async (empObject: EmployeeType) => {
   }
 };
 
-export { createEmployee, removeEmployeeById, getAllEmployee, updateEmployeeById };
+export { createEmployee, removeEmployeeById, getAllEmployee, updateEmployeeById, insertManyEmployee };

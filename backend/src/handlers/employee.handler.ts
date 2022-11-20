@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
-import { createEmployee, removeEmployeeById, getAllEmployee, updateEmployeeById } from "../services/employee.services";
+import { createEmployee, removeEmployeeById, getAllEmployee, updateEmployeeById, insertManyEmployee } from "../services/employee.services";
 import { SUCCESS_RESPONSE, ERROR_RESPONSE } from "../common/messages";
-import { ObjectId } from "mongoose";
+import { csvToJson, madeEmployee } from "../utils";
+
 const GetEmployees = async (req: Request, res: Response) => {
   try {
     const allEmp = await getAllEmployee();
@@ -50,9 +51,15 @@ const UpdateEmployee = async (req: Request, res: Response) => {
   }
 };
 
-const UploadEmployer = async (req: Request, res: Response) => {
+const UploadEmployer = async (req: any, res: Response) => {
   try {
-    return res.status(400).json(SUCCESS_RESPONSE.success({}));
+    const csvFile = req?.file
+    var csvString = csvFile.buffer.toString()
+    const json_data = await csvToJson(csvString); 
+    const employeesData = madeEmployee(json_data);
+    const empMany = await insertManyEmployee(employeesData)
+
+    return res.status(400).json(SUCCESS_RESPONSE.success(empMany));
   } catch (e) {
     return res.status(400).json(ERROR_RESPONSE.notFound((e as Error).message));
   }

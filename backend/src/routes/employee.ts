@@ -8,7 +8,7 @@ const EmployeeRouter = (router: Router) => {
   router.route(ROUTES.EMPLOYEES).put(UpdateEmployee);
   router.route(ROUTES.EMPLOYEES).post(CreateEmployees);
   router.route(ROUTES.EMPLOYEES_BY_ID).delete(RemoveEmployee);
-  router.route(ROUTES.USERS_UPLOAD).post(UploadValidator, UploadEmployer);
+  router.route(ROUTES.EMPLOYEES_UPLOAD).post(UploadValidator, UploadEmployer);
 };
 
 export default EmployeeRouter;

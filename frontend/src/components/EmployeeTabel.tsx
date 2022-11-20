@@ -8,6 +8,8 @@ import EndpointService from "../services/endpoint";
 import EditEmployeeModal from "./EditEmployeeModal"
 import { AppContextType, AppContext } from "../contexts/AppContext";
 
+import './styles/EmployeeTable.less';
+
 const { confirm } = Modal;
 
 type Props = {
@@ -90,6 +92,7 @@ const EmployeeTable: React.FC<Props> = ({ data = []}) => {
   return (
     <Table
       columns={columns}
+      className="wrapperDataTable"
       pagination={{
         position: ["bottomRight"],
         defaultPageSize: 10,
