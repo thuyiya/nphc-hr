@@ -59,7 +59,7 @@ const UploadEmployer = async (req: any, res: Response) => {
     const employeesData = madeEmployee(json_data);
     const empMany = await insertManyEmployee(employeesData)
 
-    return res.status(400).json(SUCCESS_RESPONSE.success(empMany));
+    return res.status(200).json(SUCCESS_RESPONSE.success(empMany));
   } catch (e) {
     return res.status(400).json(ERROR_RESPONSE.notFound((e as Error).message));
   }
