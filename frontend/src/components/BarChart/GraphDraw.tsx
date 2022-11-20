@@ -1,5 +1,4 @@
 import * as d3 from "d3";
-import "./GraphDraw.less";
 
 const GraphDraw = (props: any) => {
   d3.select(".vis-barchart > *").remove();
@@ -43,6 +42,9 @@ const GraphDraw = (props: any) => {
     .enter()
     .append("rect")
     .attr("class", "bar")
+    .attr("fill", function (d: any, i: number) {
+      return `rgb(${60 + i}, 99, 130)`;
+    })
     .attr("x", (d: any) => {
       return x(d.full_name);
     })

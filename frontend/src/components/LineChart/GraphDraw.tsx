@@ -45,7 +45,7 @@ const GraphDraw = (props: any) => {
     svg.append("path")
         .datum(data)
         .attr("fill", "none")
-        .attr("stroke", "steelblue")
+        .attr("stroke", "rgb(60, 99, 130)")
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
             .x(function (d: any) { return x(d.date) })

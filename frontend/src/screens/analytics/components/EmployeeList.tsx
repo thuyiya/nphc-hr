@@ -14,7 +14,7 @@ const EmployeeList:FC<Props> = ({ data, changeSelectUser }) => {
     }
 
     return (
-        <div id='view6' className='pane'>
+        <div className='container pane'>
             <div className='header'>User List</div>
             <List
                 size="small"
