@@ -44,7 +44,7 @@ const EmployeeTable: React.FC<Props> = ({ data = []}) => {
     {
       title: "Action",
       key: "action",
-      render: (_: any, record: EmployeeType) => (
+      render: (_, record: EmployeeType) => (
         <Space size="middle">
           <EditEmployeeModal record={record}/>
           <Button type="text" danger size="small" onClick={() => showDeleteConfirm(record)}>

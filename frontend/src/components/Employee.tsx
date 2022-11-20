@@ -23,9 +23,9 @@ const Employee = () => {
       const response = await fetch(endpoint.getEmployees);
 
       const _results = await response.json();
-      const employees = _results.data.map((_data: any) => ({
-        key: _data._id,
+      const employees = _results.data.map((_data: EmployeeType) => ({
         ..._data,
+        key: _data._id,
       }));
       setState({
         employees,
@@ -61,8 +61,6 @@ const Employee = () => {
       return record;
     }
   };
-
-  // const getFilterdData = useMemo(() => filterData(data), []);
 
   useEffect(() => {
     getEmployees();
