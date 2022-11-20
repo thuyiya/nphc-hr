@@ -24,20 +24,9 @@ const STRINGS = {
   },
 };
 
-const EMPTY_EMPLOYEE = {
-  _id: '',
-  full_name: '',
-  age: 0,
-  login_id: '',
-  gender: '',
-  salary: 0,
-  key: '',
-  activities: []
-}
-
 const ENDPOINTS = {
   employees: `employees`,
   usersUpload: `employee/upload`,
 };
 
-export { ENDPOINTS, STRINGS, EMPTY_EMPLOYEE };
+export { ENDPOINTS, STRINGS };

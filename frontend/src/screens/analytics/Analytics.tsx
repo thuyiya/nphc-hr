@@ -2,33 +2,47 @@ import "./Analytics.less";
 import { useState, useContext, useEffect } from "react";
 import { Layout } from "antd";
 import UserProfileView from "./components/UserProfileView";
-import { EmployeeType } from "../../types";
-import { EMPTY_EMPLOYEE } from "../../constants";
+import { EmployeeType, GenderType } from "../../types";
 import { AppContext, AppContextType } from "../../contexts/AppContext";
 import GenderGraph from "./components/GenderGraph";
 import Acivities from "./components/Acivities";
 import Filter from "./components/Filter";
+import EmployeeAge from "./components/EmployeeAge";
+import EmployeeList from "./components/EmployeeList";
 
-const { Sider, Content, Footer } = Layout;
+const { Sider, Content } = Layout;
 
 function Analytics() {
   const [selectedEmployee, setEmployee] =
-    useState<EmployeeType>(EMPTY_EMPLOYEE);
+    useState<EmployeeType>({
+      _id: '',
+      full_name: '',
+      age: 0,
+      login_id: '',
+      gender: 'Unknown',
+      salary: 0,
+      key: '',
+      activities: []
+    });
   const {
     state: { employees },
   } = useContext(AppContext) as AppContextType;
-  const [includedGender, setIncludedGender] = useState([
+  const [includedGender, setIncludedGender] = useState<Array<GenderType>>([
     "Male",
     "Female",
     "Unknown",
   ]);
   const [greaterThenAge, setGreaterThenAge] = useState(0);
 
-  const changeGreaterThenAge = (value: any) => {
+  const changeGreaterThenAge = (value: number) => {
     setGreaterThenAge(value);
   };
 
-  const changeIncludedGender = (value: any) => {
+  const changeSelectUser = (value: EmployeeType) => {
+    setEmployee(value);
+  };
+
+  const changeIncludedGender = (value: Array<GenderType>) => {
     setIncludedGender(value);
   };
 
@@ -59,17 +73,24 @@ function Analytics() {
             />
           </Content>
         </Sider>
-      </Layout>
-      <Layout>
-      <Content style={{ height: 300 }}>
-            <Acivities employee={selectedEmployee}/>
-      </Content>
-      <Content style={{ height: 600 }}>
-        
-      </Content>
-      <Content style={{ height: 300 }}>
-        
-      </Content>
+        <Layout>
+          <Content style={{ height: 300 }}>
+            <Acivities employee={selectedEmployee} />
+          </Content>
+          <Layout>
+            <Layout style={{ height: 600 }}>
+              <Content>
+                <EmployeeAge data={filteredData} />
+              </Content>
+              <Sider width={300} style={{ backgroundColor: "#eee" }}>
+                <EmployeeList
+                  data={filteredData}
+                  changeSelectUser={changeSelectUser}
+                />
+              </Sider>
+            </Layout>
+          </Layout>
+        </Layout>
       </Layout>
     </div>
   );

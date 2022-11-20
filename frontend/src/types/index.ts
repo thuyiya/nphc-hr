@@ -1,10 +1,11 @@
+type GenderType = "Male" | "Female" | "Unknown"
 interface EmployeeType {
   key: React.Key;
   _id: string;
   full_name: string;
   login_id: string;
   salary: number;
-  gender: string;
+  gender: GenderType;
   age: number;
   activities: Array<any>
 }
@@ -13,4 +14,4 @@ interface EnvConfigType {
   v: string;
 }
 
-export type { EnvConfigType, EmployeeType };
+export type { EnvConfigType, EmployeeType, GenderType };
