@@ -16,18 +16,20 @@ const EditEmployeeModal: React.FC<{ record: EmployeeType }> = ({ record }) => {
   const updateEmployee = async (employee: EmployeeType) => {
     try {
       const configObject = {
-        method: "PUT",                    
+        method: "PUT",
         headers: {
-          "Content-Type": "application/json" 
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(employee)
+        body: JSON.stringify(employee),
       };
       const endpoint = new EndpointService();
       const response = await fetch(endpoint.getEmployees, configObject);
 
       const _results = await response.json();
 
-      if(!_results.data.modifiedCount) { throw new Error("Update Failed")}
+      if (!_results.data.modifiedCount) {
+        throw new Error("Update Failed");
+      }
 
       setState({
         employees: employees.map((emp) => {
@@ -37,18 +39,16 @@ const EditEmployeeModal: React.FC<{ record: EmployeeType }> = ({ record }) => {
           return emp;
         }),
       });
-      closeModal();
+      handleCancel();
     } catch (error) {
-      message.success(`Oops!, Something went wrong with removing employee ${employee.full_name}`)
+      message.success(
+        `Oops!, Something went wrong with removing employee ${employee.full_name}`,
+      );
     }
   };
 
   const showModal = () => {
     setIsModalVisible(true);
-  };
-
-  const closeModal = () => {
-    setIsModalVisible(false);
   };
 
   const handleOk = () => {
@@ -75,15 +75,16 @@ const EditEmployeeModal: React.FC<{ record: EmployeeType }> = ({ record }) => {
 
   return (
     <>
-      <Button type="text" size="small" onClick={showModal}>
+      <Button type="text" size="small" data-testId="edit" onClick={showModal}>
         <EditOutlined />
       </Button>
       <Modal
         title="Edit Employee Data"
         visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        okText="Submit"
+        // onOk={handleOk}
+        // onCancel={handleCancel}
+        // okText="Submit"
+        footer={null}
       >
         <Form
           form={form}
@@ -105,23 +106,27 @@ const EditEmployeeModal: React.FC<{ record: EmployeeType }> = ({ record }) => {
             name="full_name"
             rules={[{ required: true, message: "Please input name!" }]}
           >
-            <Input placeholder="Name" />
+            <Input data-testId="name" placeholder="Name" />
           </Form.Item>
           <Form.Item
             label="Login"
             name="login_id"
             rules={[{ required: true, message: "Please input login!" }]}
           >
-            <Input placeholder="Login" />
+            <Input data-testId="login" placeholder="Login" />
           </Form.Item>
           <Form.Item
             label="Salary"
             name="salary"
             rules={[{ required: true, message: "Please input salary!" }]}
           >
-            <Input placeholder="Salary" />
+            <Input data-testId="salary" placeholder="Salary" />
           </Form.Item>
         </Form>
+        <div className="modal-footer">
+          <Button onClick={handleCancel}>Cancel</Button>
+          <Button type="primary" onClick={handleOk} data-testid="submit-edit-emp" style={{ marginLeft: 8 }}>Submit</Button>
+        </div>
       </Modal>
     </>
   );

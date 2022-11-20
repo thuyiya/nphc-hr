@@ -17,7 +17,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prettier": "prettier --write 'src/**/*.{ts, tsx}'",
-    "test:e2e": "cypress run --headed"
+    "test:e2e": "cypress run --headed",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [

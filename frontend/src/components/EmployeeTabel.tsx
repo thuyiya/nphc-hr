@@ -95,6 +95,7 @@ const EmployeeTable: React.FC<Props> = ({ data = []}) => {
         defaultPageSize: 10,
       }}
       dataSource={data}
+      rowClassName={"emp-test-row"}
     />
   );
 };

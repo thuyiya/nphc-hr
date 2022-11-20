@@ -71,6 +71,7 @@ const Employee = () => {
           <NumberInputs
             prefix={true}
             label={"Minimum Salary"}
+            testId={"minimum_salary"}
             value={minimumSalary}
             onChange={(input) => setMinimumSalary(input.target.value)}
           />
@@ -90,6 +91,7 @@ const Employee = () => {
         <Col>
           <NumberInputs
             prefix={false}
+            testId={"maximum_salary"}
             label={"Maximum Salary"}
             value={maximumSalary}
             onChange={(input) => setMaximumSalary(input.target.value)}

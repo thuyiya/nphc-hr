@@ -11,11 +11,12 @@ type Props = {
   prefix: boolean;
   label: string;
   value?: string | number | undefined;
+  testId?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>
 };
 
 
-const NumberInputs: React.FC<Props> = ({ prefix, label, value, onChange }) => (
+const NumberInputs: React.FC<Props> = ({ prefix, label, value, onChange, testId = "input_amount" }) => (
   <Space className="input-container">
     {prefix && (
       <div className="input-prefix-icon">
@@ -29,6 +30,7 @@ const NumberInputs: React.FC<Props> = ({ prefix, label, value, onChange }) => (
       </Text>
     </div>
     <Input
+      data-testid={`${testId}`}
       size="large"
       placeholder="Amount Ex. 1000"
       prefix={<DollarOutlined />}
