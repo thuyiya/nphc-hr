@@ -6,9 +6,10 @@ import './EmployeeList.less';
 type Props = {
     data: any;
     changeSelectUser: any
+    selectedEmployeeId: string
 }
 
-const EmployeeList:FC<Props> = ({ data, changeSelectUser }) => {
+const EmployeeList:FC<Props> = ({ data, changeSelectUser, selectedEmployeeId }) => {
     const selectUser = (employee: EmployeeType) => {
         changeSelectUser(employee);
     }
@@ -25,6 +26,7 @@ const EmployeeList:FC<Props> = ({ data, changeSelectUser }) => {
                     <div>
                         {employee.full_name + ':' + employee.age}
                     </div>
+                    {employee._id === selectedEmployeeId && <div className='dot'/>}
                 </List.Item>}
             />
         </div>

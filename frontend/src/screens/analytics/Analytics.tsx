@@ -91,6 +91,7 @@ function Analytics() {
                 <EmployeeList
                   data={filteredData}
                   changeSelectUser={changeSelectUser}
+                  selectedEmployeeId={selectedEmployee._id}
                 />
               </Sider>
             </Col>
