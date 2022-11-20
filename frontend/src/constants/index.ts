@@ -31,7 +31,8 @@ const EMPTY_EMPLOYEE = {
   login_id: '',
   gender: '',
   salary: 0,
-  key: ''
+  key: '',
+  activities: []
 }
 
 const ENDPOINTS = {

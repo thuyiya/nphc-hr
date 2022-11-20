@@ -6,6 +6,7 @@ interface EmployeeType {
   salary: number;
   gender: string;
   age: number;
+  activities: Array<any>
 }
 interface EnvConfigType {
   base_url: string;

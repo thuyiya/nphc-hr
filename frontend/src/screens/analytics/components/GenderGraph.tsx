@@ -1,6 +1,6 @@
 import "./GenderGraph.less";
 import { FC } from "react";
-import PieChart from "../../../components/PieChart/PieChart";
+import PieChart from "../../../components/PieChart/ChartContainer";
 
 type Props = {
   data: any;

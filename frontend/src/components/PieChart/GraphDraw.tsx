@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 
-const draw = (props: any) => {
+const GraphDraw = (props: any) => {
     const data = props.data;
     const gender = ['Male', 'Female', 'Unknown'];
     const count = new Array(3).fill(0);
@@ -31,7 +31,7 @@ const draw = (props: any) => {
     const radius = Math.min(width, height) / 2;
 
     const color = d3.scaleOrdinal()
-        .range(['steelblue', 'LightBlue', 'LightSteelBlue']);
+        .range(['#38ada9', '#78e08f', '#b8e994']);
 
     const arc: any = d3.arc()
         .innerRadius(0)
@@ -73,4 +73,4 @@ const draw = (props: any) => {
         .attr("x", 11);
 }
 
-export default draw;
+export default GraphDraw;
