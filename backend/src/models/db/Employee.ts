@@ -14,6 +14,19 @@ const employeeSchema = new mongoose.Schema(
       required: true,
       type: Number,
     },
+    gender: {
+      required: true,
+      type: String,
+      enum: ['Male', 'Female'],
+      default: "Male"
+    },
+    age: {
+      type: Number,
+      default: 20
+    },
+    activities: {
+      type: Array,
+    },
     profile_pic: {
       required: false,
       type: String,

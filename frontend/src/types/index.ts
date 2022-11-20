@@ -4,6 +4,8 @@ interface EmployeeType {
   full_name: string;
   login_id: string;
   salary: number;
+  gender: string;
+  age: number;
 }
 interface EnvConfigType {
   base_url: string;
