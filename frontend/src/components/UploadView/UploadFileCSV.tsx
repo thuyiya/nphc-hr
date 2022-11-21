@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useContext, FC } from "react";
 import {
   LoadingOutlined,
   UploadOutlined,
@@ -8,6 +8,7 @@ import { message, Space, Upload, Button, Tooltip } from "antd";
 import type { UploadChangeParam } from "antd/es/upload";
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
 import EndpointService from "../../services/endpoint";
+import { AppContext, AppContextType } from "../../contexts/AppContext";
 
 const MAX_LENGTH = 28;
 
@@ -35,9 +36,10 @@ type Props = {
   closeModel: () => void
 }
 
-const UploadFileCSV: React.FC<Props> = ({ isModalVisible, closeModel }) => {
+const UploadFileCSV: FC<Props> = ({ isModalVisible, closeModel }) => {
   const [loading, setLoading] = useState(false);
   const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const { state, setState } = useContext(AppContext) as AppContextType;
 
   const handleChange: UploadProps["onChange"] = (
     info: UploadChangeParam<UploadFile>
@@ -85,6 +87,7 @@ const UploadFileCSV: React.FC<Props> = ({ isModalVisible, closeModel }) => {
         console.log("_results ", _results)
         onSuccess("ok");
         closeModel()
+        setState({ employees: [..._results.data, ...state.employees]})
         message.success(`${_results.data.length} Recode were added successfully!`)
       } else {
         throw _results;
