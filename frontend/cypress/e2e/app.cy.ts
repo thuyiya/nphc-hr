@@ -1,4 +1,11 @@
+import EndpointService from "../../src/services/endpoint";
+
 describe("Salary input check", () => {
+  const editId = "637a396d572d959998000a3c";
+  const name = "Thusitha Jayalath";
+  const login = "thuyiya";
+  const salary = "9500";
+
   beforeEach(() => {
     cy.visit("http://localhost:3000");
   });
@@ -21,17 +28,10 @@ describe("Salary input check", () => {
   });
 
   it("Check edit employee details", () => {
-    const name = "Thusitha Jayalath";
-    const login = "thuyiya";
-    const salary = "9500"
-
     cy.get(
       '*[class^="ant-table-row ant-table-row-level-0 emp-test-row"]',
     ).should("exist");
-    cy.contains("63774ab4572d9599980009e0")
-      .parents("tr")
-      .find('[data-testid="edit"]')
-      .click();
+    cy.contains(editId).parents("tr").find('[data-testid="edit"]').click();
 
     cy.get('[data-testid="name"]').should("exist");
     cy.get('[data-testid="name"]').focus().clear();
@@ -40,19 +40,25 @@ describe("Salary input check", () => {
     cy.get('[data-testid="name"]').type(name);
     cy.get('[data-testid="login"]').type(login);
     cy.get('[data-testid="salary"]').type(salary);
-    cy.get('[data-testid="submit-edit-emp"]').click()
+    cy.get('[data-testid="submit-edit-emp"]').click();
   });
 
   it("Check edit data added to the table", () => {
-    const name = "Thusitha Jayalath";
-    const login = "thuyiya";
-    const salary = "9500"
-
     cy.get(
       '*[class^="ant-table-row ant-table-row-level-0 emp-test-row"]',
     ).should("exist");
     cy.contains(name).should("exist");
     cy.contains(login).should("exist");
     cy.contains(salary).should("exist");
+  });
+
+  it("Check employees endpoint have record more than 0", () => {
+    const endpoint = new EndpointService();
+    cy.request(endpoint.getEmployees).as("employees");
+    cy.get("@employees").should((response: any) => {
+      expect(response.body.data).to.be.length.greaterThan(0);
+      expect(response).to.have.property("headers");
+      expect(response).to.have.property("duration");
+    });
   });
 });
