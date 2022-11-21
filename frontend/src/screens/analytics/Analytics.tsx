@@ -1,4 +1,3 @@
-import "./Analytics.less";
 import { useState, useContext, useEffect, useMemo } from "react";
 import { Layout, Col, Row } from "antd";
 import UserProfileView from "./components/UserProfileView";
@@ -9,6 +8,8 @@ import Acivities from "./components/Acivities";
 import Filter from "./components/Filter";
 import EmployeeAge from "./components/EmployeeAge";
 import EmployeeList from "./components/EmployeeList";
+
+import "./Analytics.less";
 
 const { Sider, Content } = Layout;
 
@@ -60,44 +61,38 @@ function Analytics() {
   }, []);
 
   return (
-    <div>
-      <Row>
-        <Col span={6}>
-          <Sider width={300} className="sider">
-            <Content style={{ height: 200 }}>
-              <UserProfileView employee={selectedEmployee} />
-            </Content>
-            <Content style={{ height: 300 }}>
-              <GenderGraph data={filteredData} />
-            </Content>
-            <Content style={{ height: 400 }}>
-              <Filter
-                changeGreaterThenAge={changeGreaterThenAge}
-                changeIncludedGender={changeIncludedGender}
-              />
-            </Content>
-          </Sider>
-        </Col>
-        <Col span={18}>
-          <Row>
-            <Col span={24}>
-              <Acivities employee={selectedEmployee} />
-            </Col>
-            <Col span={16}>
-              <EmployeeAge data={filteredData} />
-            </Col>
-            <Col span={8}>
-              <Sider width={300} style={{ backgroundColor: "#eee" }}>
-                <EmployeeList
-                  data={filteredData}
-                  changeSelectUser={changeSelectUser}
-                  selectedEmployeeId={selectedEmployee._id}
-                />
-              </Sider>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+    <div className="analiticsMainWrapper">
+      <div className="topWrapper">
+        <div className="userCardWrapper comCard">
+          <UserProfileView employee={selectedEmployee} />
+        </div>
+        <div className="userActivityWrapper comCard">
+          <Acivities employee={selectedEmployee} />
+        </div>
+      </div>
+
+      <div className="threeColMainWrapper">
+        <div className="piechartWrapper comCard">
+          <GenderGraph data={filteredData} />
+          <div className="chartFilters">
+            <Filter
+              changeGreaterThenAge={changeGreaterThenAge}
+              changeIncludedGender={changeIncludedGender}
+            />
+          </div>
+        </div>
+        <div className="fullLineGraph comCard">
+          <EmployeeAge data={filteredData} />
+        </div>
+
+        <div className="employeeListWrapper comCard">
+          <EmployeeList
+            data={filteredData}
+            changeSelectUser={changeSelectUser}
+            selectedEmployeeId={selectedEmployee._id}
+          />
+        </div>
+      </div>
     </div>
   );
 }

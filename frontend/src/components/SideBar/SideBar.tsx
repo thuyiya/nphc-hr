@@ -22,7 +22,6 @@ const SideBar: React.FC<Props> = ({ header }) => {
 
   return (
     <Sider
-      trigger={null}
       breakpoint="lg"
       collapsedWidth="0"
       onBreakpoint={(broken) => {

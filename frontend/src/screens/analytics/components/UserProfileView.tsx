@@ -1,31 +1,29 @@
-import { FC } from 'react';
-import { Avatar, Typography } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { FC } from "react";
+import { Avatar } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import "./UserProfileView.less";
-import { EmployeeType } from '../../../types';
-
-const { Text } = Typography;
+import { EmployeeType } from "../../../types";
 
 type Props = {
-    employee: EmployeeType
-}
+  employee: EmployeeType;
+};
 
 const UserProfileView: FC<Props> = ({ employee }) => {
-    return (
-        <div className='container'>
-            <Text strong>User Profile</Text>
-            <div>
-                <div className={'avatar-view'}>
-                    <Avatar size={64} icon={<UserOutlined />} />
-                </div>
-                <div className={'info-view'}>
-                    <div>name: {employee.full_name}</div>
-                    <div>gender: {employee.gender}</div>
-                    <div>age: {employee.age}</div>
-                </div>
-            </div>
+  return (
+    <div className="userProfileContainer">
+      <div className="avatarView">
+        <Avatar size={64} icon={<UserOutlined />} />
+      </div>
+      <div className="title">User Profile</div>
+      <div>
+        <div className="infoView">
+          <div className="singleRow">Name: {employee.full_name}</div>
+          <div className="singleRow">Gender: {employee.gender}</div>
+          <div className="singleRow">Age: {employee.age}</div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
 export default UserProfileView;

@@ -11,9 +11,11 @@ const GenderGraph: FC<Props> = ({ data }) => {
   const height = 260;
 
   return (
-    <div id="view2" className="gender_graph_container pane">
-      <div className="header">Gender</div>
-      <PieChart data={data} width={width} height={height} />
+    <div id="view2" className="genderGraphContainer">
+      <div className="genderGraphHeader">Gender</div>
+      <div className="positionCenter">
+        <PieChart data={data} width={width} height={height} />
+      </div>
     </div>
   );
 };

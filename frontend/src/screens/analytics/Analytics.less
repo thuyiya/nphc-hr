@@ -1,10 +1,88 @@
-@import '~antd/dist/antd.less';
+@import "~antd/dist/antd.less";
 
-.container {
-    background-color: aliceblue;
-    text-align: center;
+.analiticsMainWrapper {
+  .comCard {
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(var(--border-color));
+    padding: 20px;
+    margin-bottom: 20px;
+  }
 }
 
-.sider {
-    background-color: #eee;
+@media only screen and (min-width: 992px) {
+  .analiticsMainWrapper {
+    .topWrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: center;
+      .userCardWrapper {
+        width: 200px;
+        position: relative;
+      }
+      .userActivityWrapper {
+        width: calc(100% - 220px);
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .analiticsMainWrapper {
+    .topWrapper {
+      .userCardWrapper {
+        height: 330px;
+      }
+      .userActivityWrapper {
+        height: 330px;
+      }
+    }
+    .threeColMainWrapper {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .piechartWrapper {
+        width: 350px;
+        height: 622px;
+        position: relative;
+      }
+      .fullLineGraph {
+        width: calc(100% - 370px);
+        margin-left: 20px;
+        height: 622px;
+      }
+    }
+    .employeeListWrapper {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (min-width: 1366px) {
+  .analiticsMainWrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .threeColMainWrapper {
+      .piechartWrapper {
+        width: 350px;
+        height: 622px;
+        position: relative;
+      }
+      .fullLineGraph {
+        width: calc(100% - 680px);
+        margin-left: 20px;
+        height: 622px;
+      }
+    }
+    .employeeListWrapper {
+      width: 290px;
+      margin-left: 20px;
+      padding: 0;
+      height: 622px;
+    }
+  }
 }

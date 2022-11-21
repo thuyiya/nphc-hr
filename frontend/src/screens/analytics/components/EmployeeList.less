@@ -1,19 +1,38 @@
-.employee_list_container {
-    height: 600px;
-}
-
-.button-item {
+.employeeListContainer {
+    .employeeListHeader {
+      font-size: var(--card-heading-size);
+      font-weight: 500;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(var(--border-color));
+    }
+  }
+  
+  .button-item {
     cursor: pointer;
-}
-
-.list {
-    overflow: auto;
+  }
+  
+  .list {
+    overflow-y: auto;
     height: 600px;
-}
-
-.dot {
+    border: none;
+  }
+  
+  .dot {
     background-color: #2ecc71;
     width: 10px;
     height: 10px;
     border-radius: 5px;
-}
+  }
+  
+  @media only screen and (min-width: 1366px) {
+    .employeeListContainer {
+      .employeeListHeader {
+        padding: 20px;
+      }
+      
+    }
+    .list{
+          height: 552px;
+      }
+  }
+  
