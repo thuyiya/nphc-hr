@@ -14,8 +14,10 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "run:build": "serve -s build",
     "test": "craco test",
     "eject": "craco eject",
+    "clean": "rm -rf build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prettier": "prettier --write 'src/**/*.{ts, tsx}'",
