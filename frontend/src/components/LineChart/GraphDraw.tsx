@@ -1,16 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as d3 from 'd3';
 import _ from 'lodash';
+import { EmployeeType } from "../../types";
 
-const GraphDraw = (props: any) => {
-    let data = [];
-    if (props.data !== null) {
-        data = _.cloneDeep(props.data.activities);
+
+const GraphDraw = (employee: EmployeeType, chartWidth: number, chartHeight: number) => {
+    let data: Array<any> = [];
+    if (data !== null) {
+        data = _.cloneDeep(employee.activities);
     }
 
     d3.select('.vis-linechart > *').remove();
     const margin = { top: 20, right: 20, bottom: 30, left: 40 }
-    const width = props.width - margin.left - margin.right;
-    const height = props.height - margin.top - margin.bottom;
+    const width = chartWidth - margin.left - margin.right;
+    const height = chartHeight - margin.top - margin.bottom;
     const svg = d3.select(".vis-linechart")
         .append("svg")
         .attr("width", width + margin.left + margin.right)

@@ -17,7 +17,7 @@ const Acivities: FC<Props> = ({ employee }) => {
       <div className="activityHeader">User Acivities</div>
       <div style={{ overflowX: "scroll", overflowY: "hidden" }}>
         {employee.activities.length > 0 && (
-          <LineChart data={employee} width={width} height={height} />
+          <LineChart employee={employee} width={width} height={height} />
         )}
       </div>
     </div>

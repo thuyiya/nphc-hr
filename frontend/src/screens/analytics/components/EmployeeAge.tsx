@@ -1,9 +1,10 @@
 import "./EmployeeAge.less";
 import { FC } from "react";
 import BarChart from "../../../components/BarChart/ChartContainer";
+import { EmployeeType } from "../../../types";
 
 type Props = {
-  data: any;
+  data: Array<EmployeeType>;
 };
 
 const EmployeeAge: FC<Props> = ({ data }) => {

@@ -5,6 +5,7 @@ export type AppContextType = {
   state: {
     employees: EmployeeType[];
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setState: (update: any) => void;
 };
 

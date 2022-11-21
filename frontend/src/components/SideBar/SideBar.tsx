@@ -15,7 +15,7 @@ const SideBar: React.FC<Props> = ({ header }) => {
 
   const [active, setActive] = useState(location.pathname);
 
-  function handleClick(e: any) {
+  function handleClick(e: { key: string }) {
     setActive(e.key);
     navigate(DASHBOARD_ROUTES.filter((route) => e.key === route.key)[0].to);
   }
@@ -24,9 +24,6 @@ const SideBar: React.FC<Props> = ({ header }) => {
     <Sider
       breakpoint="lg"
       collapsedWidth="0"
-      onBreakpoint={(broken) => {
-        // console.log(broken);
-      }}
       onCollapse={(collapsed, type) => {
         console.log(collapsed, type);
       }}

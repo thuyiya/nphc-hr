@@ -1,10 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, FC } from "react";
+import { EmployeeType } from "../../types";
 import draw from "./GraphDraw";
 
-const ChartContainer = (props: any) => {
+type Props = {
+  data: Array<EmployeeType>;
+  width: number;
+  height: number;
+}
+
+const ChartContainer:FC<Props> = ({ data, width, height }) => {
   useEffect(() => {
-    draw(props);
-  }, [props.data]);
+    draw(data, width, height);
+  }, [data]);
 
   return <div className="vis-barchart" />;
 };

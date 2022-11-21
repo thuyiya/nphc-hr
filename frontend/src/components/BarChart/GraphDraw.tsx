@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as d3 from "d3";
+import { EmployeeType } from "../../types";
 
-const GraphDraw = (props: any) => {
+const GraphDraw = (data: Array<EmployeeType>, chartWidth: number, chartHeight: number) => {
   d3.select(".vis-barchart > *").remove();
-  const data = props.data;
   const margin = { top: 20, right: 20, bottom: 30, left: 40 };
-  const width = props.width - margin.left - margin.right;
-  const height = props.height - margin.top - margin.bottom;
+  const width = chartWidth - margin.left - margin.right;
+  const height = chartHeight - margin.top - margin.bottom;
   const svg: any = d3
     .select(".vis-barchart")
     .append("svg")

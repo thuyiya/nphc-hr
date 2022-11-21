@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import "./Filter.less";
 import { FC, useState } from "react";
 

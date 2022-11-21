@@ -4,8 +4,8 @@ import { EmployeeType } from "../../../types";
 import "./EmployeeList.less";
 
 type Props = {
-  data: any;
-  changeSelectUser: any;
+  data: Array<EmployeeType>;
+  changeSelectUser: (employee: EmployeeType) => void;
   selectedEmployeeId: string;
 };
 

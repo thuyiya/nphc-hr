@@ -64,6 +64,7 @@ const UploadFileCSV: FC<Props> = ({ isModalVisible, closeModel }) => {
     </Button>
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const uploadRequest = async (options: any) => {
     const { onSuccess, onError, file } = options;
 
