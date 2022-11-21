@@ -31,10 +31,11 @@ const beforeUpload = (file: RcFile) => {
 };
 
 type Props = {
-  isModalVisible?: boolean
+  isModalVisible?: boolean;
+  closeModel: () => void
 }
 
-const UploadFileCSV: React.FC<Props> = ({ isModalVisible }) => {
+const UploadFileCSV: React.FC<Props> = ({ isModalVisible, closeModel }) => {
   const [loading, setLoading] = useState(false);
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
@@ -81,7 +82,10 @@ const UploadFileCSV: React.FC<Props> = ({ isModalVisible }) => {
       const _results = await response.json();
 
       if (_results.success) {
+        console.log("_results ", _results)
         onSuccess("ok");
+        closeModel()
+        message.success(`${_results.data.length} Recode were added successfully!`)
       } else {
         throw _results;
       }
