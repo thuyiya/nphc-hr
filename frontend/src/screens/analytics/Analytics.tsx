@@ -1,8 +1,8 @@
 import { useState, useContext, useEffect, useMemo } from "react";
-import { Layout, Col, Row } from "antd";
 import UserProfileView from "./components/UserProfileView";
 import { EmployeeType, GenderType } from "../../types";
 import { AppContext, AppContextType } from "../../contexts/AppContext";
+import EndpointService from "../../services/endpoint";
 import GenderGraph from "./components/GenderGraph";
 import Acivities from "./components/Acivities";
 import Filter from "./components/Filter";
@@ -10,8 +10,6 @@ import EmployeeAge from "./components/EmployeeAge";
 import EmployeeList from "./components/EmployeeList";
 
 import "./Analytics.less";
-
-const { Sider, Content } = Layout;
 
 function Analytics() {
   const [selectedEmployee, setEmployee] = useState<EmployeeType>({
@@ -26,6 +24,7 @@ function Analytics() {
   });
   const {
     state: { employees },
+    setState,
   } = useContext(AppContext) as AppContextType;
   const [includedGender, setIncludedGender] = useState<Array<GenderType>>([
     "Male",
@@ -52,11 +51,39 @@ function Analytics() {
     .filter((user) => user.age > greaterThenAge)
   }
 
+  const getEmployees = async () => {
+    try {
+      const endpoint = new EndpointService();
+      const response = await fetch(endpoint.getEmployees);
+
+      const _results = await response.json();
+      const employees = _results.data.map((_data: EmployeeType) => ({
+        ..._data,
+        key: _data._id,
+      }));
+      setState({
+        employees,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const setDefaultEmployee = () => {
+    if (employees && employees.length > 0 && selectedEmployee && selectedEmployee._id.length < 1) {
+      setEmployee(employees[0]);
+    }
+  }
+
   const filteredData = useMemo(() => filterEmployeeData(), [includedGender, employees, greaterThenAge])
 
   useEffect(() => {
-    if (employees && employees.length > 0) {
-      setEmployee(employees[0]);
+    setDefaultEmployee()
+  }, [employees]);
+
+  useEffect(() => {
+    if (employees && employees.length < 1) {
+      getEmployees();
     }
   }, []);
 
