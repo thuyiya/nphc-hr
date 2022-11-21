@@ -51,6 +51,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/d3": "^7.4.0",
     "@types/enzyme": "^3.10.12",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^27.5.2",
     "@types/lodash": "^4.14.189",
     "@types/node": "^16.11.49",
