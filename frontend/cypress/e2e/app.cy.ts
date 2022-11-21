@@ -1,7 +1,7 @@
 import EndpointService from "../../src/services/endpoint";
 
 describe("Salary input check", () => {
-  const editId = "637a396d572d959998000a3c";
+  const editId = "637a396d572d959998000a3d";
   const name = "Thusitha Jayalath";
   const login = "thuyiya";
   const salary = "9500";
